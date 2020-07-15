@@ -1,0 +1,37 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="BackFormationPN-ear:ear exploded">
+    <output-path>$PROJECT_DIR$/BackFormationPN-ear/target/BackFormationPN-ear</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>BackFormationPN-ear</module>
+        <packaging>ear</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="BackFormationPN-ear/javaeeApplication/JavaEE" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/BackFormationPN-ear/target/BackFormationPN-ear/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="archive" name="BackFormationPN-web.war">
+        <element id="artifact" artifact-name="BackFormationPN-web:war exploded" />
+      </element>
+      <element id="archive" name="BackFormationPN-ejb.jar">
+        <element id="artifact" artifact-name="BackFormationPN-ejb:ejb exploded" />
+      </element>
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.9.4/jackson-databind-2.9.4.jar" output-file-name="jackson-databind.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar" output-file-name="jackson-annotations.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.9.4/jackson-core-2.9.4.jar" output-file-name="jackson-core.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/org/hibernate/hibernate-annotations/3.5.6-Final/hibernate-annotations-3.5.6-Final.jar" output-file-name="hibernate-annotations.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/3.5.6-Final/hibernate-core-3.5.6-Final.jar" output-file-name="hibernate-core.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/antlr/antlr/2.7.6/antlr-2.7.6.jar" output-file-name="antlr.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/commons-collections/commons-collections/3.1/commons-collections-3.1.jar" output-file-name="commons-collections.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar" output-file-name="dom4j.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar" output-file-name="xml-apis.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/javax/transaction/jta/1.1/jta-1.1.jar" output-file-name="jta.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/org/hibernate/hibernate-commons-annotations/3.2.0.Final/hibernate-commons-annotations-3.2.0.Final.jar" output-file-name="hibernate-commons-annotations.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/org/hibernate/javax/persistence/hibernate-jpa-2.0-api/1.0.0.Final/hibernate-jpa-2.0-api-1.0.0.Final.jar" output-file-name="hibernate-jpa-2.0-api.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar" output-file-name="slf4j-api.jar" />
+    </root>
+  </artifact>
+</component>

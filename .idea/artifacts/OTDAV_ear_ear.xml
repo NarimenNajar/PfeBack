@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="OTDAV-ear:ear">
+    <output-path>$PROJECT_DIR$/OTDAV-ear/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>OTDAV-ear</module>
+        <packaging>ear</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="OTDAV-ear.ear">
+      <element id="artifact" artifact-name="OTDAV-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>

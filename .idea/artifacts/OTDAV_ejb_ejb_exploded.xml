@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="OTDAV-ejb:ejb exploded">
+    <output-path>$PROJECT_DIR$/OTDAV-ejb/target/OTDAV-ejb</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>OTDAV-ejb</module>
+        <packaging>ejb</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="BackFormationPN-ejb/ejb/EJB" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/BackFormationPN-ejb/target/OTDAV-ejb/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="BackFormationPN-ejb" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="OTDAV-web:war">
+    <output-path>$PROJECT_DIR$/OTDAV-web/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>OTDAV-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="OTDAV-web.war">
+      <element id="artifact" artifact-name="OTDAV-web:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="BackFormationPN-ear:ear">
+    <output-path>$PROJECT_DIR$/BackFormationPN-ear/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>BackFormationPN-ear</module>
+        <packaging>ear</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="BackFormationPN-ear.ear">
+      <element id="artifact" artifact-name="BackFormationPN-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>

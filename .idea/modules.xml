@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BackFormationPN.iml" filepath="$PROJECT_DIR$/BackFormationPN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BackFormationPN-ear/BackFormationPN-ear.iml" filepath="$PROJECT_DIR$/BackFormationPN-ear/BackFormationPN-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BackFormationPN-ejb/BackFormationPN-ejb.iml" filepath="$PROJECT_DIR$/BackFormationPN-ejb/BackFormationPN-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BackFormationPN-web/BackFormationPN-web.iml" filepath="$PROJECT_DIR$/BackFormationPN-web/BackFormationPN-web.iml" />
+    </modules>
+  </component>
+</project>
