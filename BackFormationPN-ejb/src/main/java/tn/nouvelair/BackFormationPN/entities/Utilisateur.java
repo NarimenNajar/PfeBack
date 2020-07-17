@@ -2,6 +2,7 @@ package tn.nouvelair.BackFormationPN.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -34,7 +35,7 @@ public class Utilisateur implements Serializable {
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Email> emails;
-
+/*
     @ManyToMany  ( mappedBy = "utilisateurs")
     private List<Activite> activites;
 
@@ -42,16 +43,23 @@ public class Utilisateur implements Serializable {
     public List<Activite> getActivites() {
         return activites;
     }
-
+      public void setActivites(List<Activite> activites) {
+        this.activites = activites;
+    }
+*/
     @ManyToOne(cascade=CascadeType.MERGE , fetch=FetchType.EAGER)
+
     private Role role;
 
     @ManyToOne(cascade=CascadeType.MERGE , fetch=FetchType.EAGER)
+
     private Categorie categorie;
 
 
     @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER)
+
     @Fetch(value = FetchMode.SUBSELECT)
+
 
     private List<NumTel> numtels;
 
@@ -71,9 +79,7 @@ public class Utilisateur implements Serializable {
         this.numtels = numtels;
     }
 
-    public void setActivites(List<Activite> activites) {
-        this.activites = activites;
-    }
+
 
     public Utilisateur() {
     }
@@ -106,7 +112,7 @@ public class Utilisateur implements Serializable {
         this.nationalite = nationalite;
         this.typePN = typePN;
         this.sexe = sexe;
-        this.activites = activites;
+        //this.activites = activites;
         this.role = role;
         this.categorie = categorie;
 
@@ -233,4 +239,31 @@ public class Utilisateur implements Serializable {
     public void setSexe(String sexe) {
         this.sexe = sexe;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Utilisateur that = (Utilisateur) o;
+        return id == that.id &&
+                rank == that.rank &&
+                cin == that.cin &&
+                typePN == that.typePN &&
+                Objects.equals(codePN, that.codePN) &&
+                Objects.equals(numLicencePN, that.numLicencePN) &&
+                Objects.equals(nom, that.nom) &&
+                Objects.equals(prenom, that.prenom) &&
+                Objects.equals(dateNaissance, that.dateNaissance) &&
+                Objects.equals(dateDebutContrat, that.dateDebutContrat) &&
+                Objects.equals(dateFinContrat, that.dateFinContrat) &&
+                Objects.equals(nationalite, that.nationalite) &&
+                Objects.equals(sexe, that.sexe) &&
+                Objects.equals(emails, that.emails) &&
+                //Objects.equals(activites, that.activites) &&
+                Objects.equals(role, that.role) &&
+                Objects.equals(categorie, that.categorie) &&
+                Objects.equals(numtels, that.numtels);
+    }
+
+
 }

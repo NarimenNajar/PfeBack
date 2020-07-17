@@ -17,7 +17,7 @@ public class Activite implements Serializable {
     private Date dateActivite;
 
 
-    @ManyToMany( fetch=FetchType.EAGER,cascade = {
+ /*   @ManyToMany( fetch=FetchType.EAGER,cascade = {
             CascadeType.PERSIST,
             CascadeType.MERGE
     })
@@ -34,7 +34,7 @@ public class Activite implements Serializable {
     public void setUtilisateurs(List<Utilisateur> utilisateurs) {
         this.utilisateurs = utilisateurs;
     }
-
+*/
     public Activite() {
     }
 
