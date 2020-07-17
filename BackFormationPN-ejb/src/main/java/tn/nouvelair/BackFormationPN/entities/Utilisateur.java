@@ -31,10 +31,7 @@ public class Utilisateur implements Serializable {
     private int typePN;
     private String sexe;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
 
-    private List<Email> emails;
 /*
     @ManyToMany  ( mappedBy = "utilisateurs")
     private List<Activite> activites;
@@ -56,28 +53,14 @@ public class Utilisateur implements Serializable {
     private Categorie categorie;
 
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER)
+    private String numeroTel;
 
-    @Fetch(value = FetchMode.SUBSELECT)
+    private String email;
 
 
-    private List<NumTel> numtels;
 
-    public List<Email> getEmails() {
-        return emails;
-    }
 
-    public void setEmails(List<Email> emails) {
-        this.emails = emails;
-    }
 
-    public List<NumTel> getNumtels() {
-        return numtels;
-    }
-
-    public void setNumtels(List<NumTel> numtels) {
-        this.numtels = numtels;
-    }
 
 
 
@@ -99,7 +82,7 @@ public class Utilisateur implements Serializable {
         this.sexe = sexe;
     }
 
-    public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe, List<Activite> activites, Role role, Categorie categorie, List<Email> emails, List<NumTel> numtels) {
+    public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe, List<Activite> activites, Role role, Categorie categorie) {
         this.codePN = codePN;
         this.numLicencePN = numLicencePN;
         this.nom = nom;
@@ -258,11 +241,9 @@ public class Utilisateur implements Serializable {
                 Objects.equals(dateFinContrat, that.dateFinContrat) &&
                 Objects.equals(nationalite, that.nationalite) &&
                 Objects.equals(sexe, that.sexe) &&
-                Objects.equals(emails, that.emails) &&
                 //Objects.equals(activites, that.activites) &&
                 Objects.equals(role, that.role) &&
-                Objects.equals(categorie, that.categorie) &&
-                Objects.equals(numtels, that.numtels);
+                Objects.equals(categorie, that.categorie) ;
     }
 
 
