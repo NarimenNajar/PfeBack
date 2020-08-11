@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("1")
-public class SeanceSimulateur extends Activite implements Serializable{
+public class Simulateur extends ActiviteFormation implements Serializable{
 
 
     @Id
@@ -16,12 +16,12 @@ public class SeanceSimulateur extends Activite implements Serializable{
     private int id;
     private String commentaire;
     private String resultFinal;
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "seanceSimulateur")
+    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "simulateur")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Level> levels;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "seanceSimulateur")
+    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "simulateur")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Note> notes;
@@ -77,7 +77,7 @@ public class SeanceSimulateur extends Activite implements Serializable{
         this.resultFinal = resultFinal;
     }
 
-    public SeanceSimulateur() {
+    public Simulateur() {
     }
 
 }

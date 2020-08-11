@@ -11,14 +11,14 @@ public class Test implements Serializable{
     private int id;
     private  Date dateTest;
     @ManyToOne
-    private Seance seance;
+    private SeanceFormation seanceFormation;
 
-    public Seance getSeance() {
-        return seance;
+    public SeanceFormation getSeanceFormation() {
+        return seanceFormation;
     }
 
-    public void setSeance(Seance seance) {
-        this.seance = seance;
+    public void setSeanceFormation(SeanceFormation seanceFormation) {
+        this.seanceFormation = seanceFormation;
     }
 
     public int getId() {

@@ -9,35 +9,41 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("2")
 
-public class Seance extends Activite implements Serializable {
+public class Formation extends ActiviteFormation implements Serializable {
 
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO )
 
     private int id;
-    @ManyToOne
+
+    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "formation")
+    @Fetch(value = FetchMode.SUBSELECT)
+
+    private List<SeanceFormation> seanceFormations;
+
+  /*  @ManyToOne
     private FormationPN formationPN;
 
     @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "seance")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Test> tests;
-
+7
     public List<Test> getTests() {
         return tests;
     }
 
     public void setTests(List<Test> tests) {
         this.tests = tests;
+    }*/
+
+    public List<SeanceFormation> getSeanceFormations() {
+        return seanceFormations;
     }
 
-    public FormationPN getFormationPN() {
-        return formationPN;
-    }
-
-    public void setFormationPN(FormationPN formationPN) {
-        this.formationPN = formationPN;
+    public void setSeanceFormations(List<SeanceFormation> seanceFormations) {
+        this.seanceFormations = seanceFormations;
     }
 
     public int getId() {
@@ -48,6 +54,6 @@ public class Seance extends Activite implements Serializable {
         this.id = id;
     }
 
-    public Seance() {
+    public Formation() {
     }
 }

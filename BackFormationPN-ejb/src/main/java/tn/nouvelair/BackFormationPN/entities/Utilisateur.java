@@ -1,14 +1,14 @@
 package tn.nouvelair.BackFormationPN.entities;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.ManyToMany;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import java.util.*;
 
 @Entity
 public class Utilisateur implements Serializable {
@@ -32,6 +32,14 @@ public class Utilisateur implements Serializable {
     private String sexe;
 
 
+    private String numeroTel;
+
+    private String email;
+
+    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "utilisateur")
+    @Fetch(value = FetchMode.SUBSELECT)
+
+    private List<Fonction> fonctions;
 /*
     @ManyToMany  ( mappedBy = "utilisateurs")
     private List<Activite> activites;
@@ -52,17 +60,16 @@ public class Utilisateur implements Serializable {
 
     private Categorie categorie;
 
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Instruction> instructions;
 
-    private String numeroTel;
+    public List<Instruction> getInstructions() {
+        return instructions;
+    }
 
-    private String email;
-
-
-
-
-
-
-
+    public void setInstructions(List<Instruction> instructions) {
+        this.instructions = instructions;
+    }
 
     public Utilisateur() {
     }
@@ -82,7 +89,7 @@ public class Utilisateur implements Serializable {
         this.sexe = sexe;
     }
 
-    public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe, List<Activite> activites, Role role, Categorie categorie) {
+    public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe, List<ActiviteFormation> activites, Role role, Categorie categorie) {
         this.codePN = codePN;
         this.numLicencePN = numLicencePN;
         this.nom = nom;
@@ -99,6 +106,30 @@ public class Utilisateur implements Serializable {
         this.role = role;
         this.categorie = categorie;
 
+    }
+
+    public String getNumeroTel() {
+        return numeroTel;
+    }
+
+    public void setNumeroTel(String numeroTel) {
+        this.numeroTel = numeroTel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Fonction> getFonctions() {
+        return fonctions;
+    }
+
+    public void setFonctions(List<Fonction> fonctions) {
+        this.fonctions = fonctions;
     }
 
     public Role getRole() {

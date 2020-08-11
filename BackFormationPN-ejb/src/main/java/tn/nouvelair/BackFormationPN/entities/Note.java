@@ -11,14 +11,14 @@ public class Note implements Serializable {
     private int id;
     private Double note;
     @ManyToOne
-    private SeanceSimulateur seanceSimulateur;
+    private Simulateur simulateur;
 
-    public SeanceSimulateur getSeanceSimulateur() {
-        return seanceSimulateur;
+    public Simulateur getSimulateur() {
+        return simulateur;
     }
 
-    public void setSeanceSimulateur(SeanceSimulateur seanceSimulateur) {
-        this.seanceSimulateur = seanceSimulateur;
+    public void setSimulateur(Simulateur simulateur) {
+        this.simulateur = simulateur;
     }
 
     public int getId() {
