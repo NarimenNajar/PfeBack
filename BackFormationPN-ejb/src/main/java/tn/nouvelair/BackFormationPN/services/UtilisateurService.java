@@ -1,5 +1,6 @@
 package tn.nouvelair.BackFormationPN.services;
 
+import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.Utilisateur;
 import java.util.logging.Logger;
 import javax.ejb.LocalBean;
@@ -58,4 +59,47 @@ public class UtilisateurService implements UtilisateurServiceRemote {
 
 
     }
+
+    @Override
+    public void updateUtilisateur(Utilisateur utilisateur) {
+        em.merge(utilisateur);
+
+    }
+
+    @Override
+    public List<Utilisateur> SelectUsersByCategorie(Integer idCategorie) {
+
+        List<Utilisateur> users=null;
+        TypedQuery<Utilisateur> query = em.createQuery("Select e from Utilisateur e where e.categorie="+idCategorie
+                , Utilisateur.class);
+        try {
+            users = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return users;
+
+    }
+
+    @Override
+    public List<Utilisateur> SelectUsersByRole(Integer idRole) {
+
+        List<Utilisateur> users=null;
+        TypedQuery<Utilisateur> query = em.createQuery("Select e from Utilisateur e where e.role="+idRole
+                , Utilisateur.class);
+        try {
+            users = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return users;
+
+    }
+
+    @Override
+    public void deleteUser(int idUser) {
+        em.remove(em.find(Utilisateur.class, idUser));
+
+    }
+
 }

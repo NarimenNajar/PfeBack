@@ -60,7 +60,8 @@ public class Utilisateur implements Serializable {
 
     private Categorie categorie;
 
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "utilisateur")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Instruction> instructions;
 
     public List<Instruction> getInstructions() {
