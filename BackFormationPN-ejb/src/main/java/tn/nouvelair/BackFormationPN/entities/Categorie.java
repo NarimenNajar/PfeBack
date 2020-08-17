@@ -14,7 +14,9 @@ public class Categorie implements Serializable {
     private String categorie;
 
     public Categorie() {
-
+    }
+    public Categorie(String categorie) {
+        this.categorie=categorie;
     }
 
     public String getCategorie() {
@@ -31,5 +33,13 @@ public class Categorie implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Categorie{" +
+                "id=" + id +
+                ", categorie='" + categorie + '\'' +
+                '}';
     }
 }

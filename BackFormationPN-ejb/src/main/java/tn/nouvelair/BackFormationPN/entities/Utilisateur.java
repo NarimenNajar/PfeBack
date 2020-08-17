@@ -9,9 +9,13 @@ import java.util.Objects;
 import javax.persistence.*;
 import javax.persistence.ManyToOne;
 import java.util.*;
+import java.util.ArrayList;
 
 @Entity
 public class Utilisateur implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
@@ -75,20 +79,7 @@ public class Utilisateur implements Serializable {
     public Utilisateur() {
     }
 
-    public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe) {
-        this.codePN = codePN;
-        this.numLicencePN = numLicencePN;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.rank = rank;
-        this.cin = cin;
-        this.dateNaissance = dateNaissance;
-        this.dateDebutContrat = dateDebutContrat;
-        this.dateFinContrat = dateFinContrat;
-        this.nationalite = nationalite;
-        this.typePN = typePN;
-        this.sexe = sexe;
-    }
+
 
     public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe, List<ActiviteFormation> activites, Role role, Categorie categorie) {
         this.codePN = codePN;
@@ -106,6 +97,23 @@ public class Utilisateur implements Serializable {
         //this.activites = activites;
         this.role = role;
         this.categorie = categorie;
+
+    }
+
+    public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe) {
+        this.codePN = codePN;
+        this.numLicencePN = numLicencePN;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.rank = rank;
+        this.cin = cin;
+        this.dateNaissance = dateNaissance;
+        this.dateDebutContrat = dateDebutContrat;
+        this.dateFinContrat = dateFinContrat;
+        this.nationalite = nationalite;
+        this.typePN = typePN;
+        this.sexe = sexe;
+
 
     }
 
