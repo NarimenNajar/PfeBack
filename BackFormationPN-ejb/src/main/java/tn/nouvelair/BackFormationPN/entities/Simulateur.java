@@ -12,7 +12,7 @@ public class Simulateur extends ActiviteFormation implements Serializable{
 
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO )
+    @GeneratedValue(strategy=GenerationType.SEQUENCE )
     private int id;
     private String commentaire;
     private String resultFinal;

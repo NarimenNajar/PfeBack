@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Competence implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO )
+    @GeneratedValue(strategy= GenerationType.SEQUENCE )
 
     private int id;
     private String competence;

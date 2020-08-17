@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Level implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO )
+    @GeneratedValue(strategy= GenerationType.SEQUENCE )
 
     private int id;
     private String level;

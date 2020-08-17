@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class Categorie implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO )
+    @GeneratedValue(strategy= GenerationType.SEQUENCE )
 
     private int id;
     private String categorie;
