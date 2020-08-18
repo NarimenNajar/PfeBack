@@ -56,8 +56,8 @@ public class CategorieRessource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdateCategorie(@PathParam (value = "id") int id,Categorie categorie) {
         metier.UpdateCategorie(categorie);
-        Response.status(Status.CREATED).entity("Reunion Modified").build();
-        return Response.ok("Your Meeting has been Modified!").build();
+        Response.status(Status.CREATED).entity(" Modified").build();
+        return Response.ok("Modified!").build();
     }
 }
 
