@@ -20,6 +20,10 @@ public class Alerte implements Serializable{
 
     private ParametrageEcheance parametrageEcheance;
 
+    @ManyToOne(cascade=CascadeType.MERGE , fetch=FetchType.EAGER)
+
+    private TypeAlerte typeAlerte;
+
     public Alerte() {
     }
 
@@ -29,6 +33,14 @@ public class Alerte implements Serializable{
 
     public void setParametrageEcheance(ParametrageEcheance parametrageEcheance) {
         this.parametrageEcheance = parametrageEcheance;
+    }
+
+    public TypeAlerte getTypeAlerte() {
+        return typeAlerte;
+    }
+
+    public void setTypeAlerte(TypeAlerte typeAlerte) {
+        this.typeAlerte = typeAlerte;
     }
 
     public int getId() {
