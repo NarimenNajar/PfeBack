@@ -15,6 +15,9 @@ public class Fonction implements Serializable {
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
 
+    @Column(unique=true)
+    private String CodeFonction;
+
     private Date dateDebut ;
 
     private Date dateFin ;
@@ -29,6 +32,22 @@ public class Fonction implements Serializable {
 
 
     public Fonction() {
+    }
+
+    public String getCodeFonction() {
+        return CodeFonction;
+    }
+
+    public void setCodeFonction(String codeFonction) {
+        CodeFonction = codeFonction;
+    }
+
+    public TypeFonction getTypeFonction() {
+        return typeFonction;
+    }
+
+    public void setTypeFonction(TypeFonction typeFonction) {
+        this.typeFonction = typeFonction;
     }
 
     public int getId() {

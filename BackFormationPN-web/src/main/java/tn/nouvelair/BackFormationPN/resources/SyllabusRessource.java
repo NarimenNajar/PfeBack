@@ -59,4 +59,5 @@ public class SyllabusRessource {
         Response.status(Status.CREATED).entity(" Modified").build();
         return Response.ok("Modified!").build();
     }
+
 }

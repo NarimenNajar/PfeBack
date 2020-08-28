@@ -1,9 +1,6 @@
 package tn.nouvelair.BackFormationPN.entities;
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Fonctionnalite implements Serializable{
@@ -13,6 +10,16 @@ public class Fonctionnalite implements Serializable{
     private int id;
     private String fonctionnalite;
 
+    @Column(unique=true)
+    private String CodeFonctionnalité;
+
+    public String getCodeFonctionnalité() {
+        return CodeFonctionnalité;
+    }
+
+    public void setCodeFonctionnalité(String codeFonctionnalité) {
+        CodeFonctionnalité = codeFonctionnalité;
+    }
 
     public int getId() {
         return id;

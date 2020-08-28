@@ -14,7 +14,18 @@ public class TypeFonction implements Serializable {
     private int id;
     private String typeFonction;
 
+    @Column(unique=true)
+    private String CodeTypeFonction;
+
     public TypeFonction() {
+    }
+
+    public String getCodeTypeFonction() {
+        return CodeTypeFonction;
+    }
+
+    public void setCodeTypeFonction(String codeTypeFonction) {
+        CodeTypeFonction = codeTypeFonction;
     }
 
     public int getId() {

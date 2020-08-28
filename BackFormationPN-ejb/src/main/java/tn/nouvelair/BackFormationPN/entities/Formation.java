@@ -17,6 +17,10 @@ public class Formation extends ActiviteFormation implements Serializable {
 
     private int id;
 
+
+
+    private String TitreFormation;
+
     @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "formation")
     @Fetch(value = FetchMode.SUBSELECT)
 
@@ -37,6 +41,16 @@ public class Formation extends ActiviteFormation implements Serializable {
     public void setTests(List<Test> tests) {
         this.tests = tests;
     }*/
+
+
+
+    public String getTitreFormation() {
+        return TitreFormation;
+    }
+
+    public void setTitreFormation(String titreFormation) {
+        TitreFormation = titreFormation;
+    }
 
     public List<SeanceFormation> getSeanceFormations() {
         return seanceFormations;

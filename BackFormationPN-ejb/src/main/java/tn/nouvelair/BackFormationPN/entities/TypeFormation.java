@@ -16,6 +16,9 @@ public class TypeFormation implements Serializable{
     private String typeFormation;
     private String titreFormation;
 
+    @Column(unique=true)
+    private String CodeTypeFormation;
+
     @ManyToOne(cascade=CascadeType.MERGE , fetch=FetchType.EAGER)
     private ParametrageEcheance parametrageEcheance;
 
@@ -28,6 +31,22 @@ public class TypeFormation implements Serializable{
 
     public void setTitreFormation(String titreFormation) {
         this.titreFormation = titreFormation;
+    }
+
+    public String getCodeTypeFormation() {
+        return CodeTypeFormation;
+    }
+
+    public void setCodeTypeFormation(String codeTypeFormation) {
+        CodeTypeFormation = codeTypeFormation;
+    }
+
+    public ParametrageEcheance getParametrageEcheance() {
+        return parametrageEcheance;
+    }
+
+    public void setParametrageEcheance(ParametrageEcheance parametrageEcheance) {
+        this.parametrageEcheance = parametrageEcheance;
     }
 
     public int getId() {

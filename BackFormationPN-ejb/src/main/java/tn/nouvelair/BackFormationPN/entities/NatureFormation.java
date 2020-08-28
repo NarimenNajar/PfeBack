@@ -15,7 +15,18 @@ public class NatureFormation implements Serializable {
     private int id;
     private String natureFormation;
 
+    @Column(unique=true)
+    private String CodeNatureFormation;
+
     public NatureFormation() {
+    }
+
+    public String getCodeNatureFormation() {
+        return CodeNatureFormation;
+    }
+
+    public void setCodeNatureFormation(String codeNatureFormation) {
+        CodeNatureFormation = codeNatureFormation;
     }
 
     public int getId() {

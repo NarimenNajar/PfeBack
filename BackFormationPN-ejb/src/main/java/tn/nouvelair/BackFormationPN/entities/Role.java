@@ -15,6 +15,9 @@ public class Role  implements Serializable {
     private int id;
     private String role;
 
+    @Column(unique=true)
+    private String CodeRole;
+
     @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
 
@@ -26,6 +29,14 @@ public class Role  implements Serializable {
 
     public void setFonctionnalites(List<Fonctionnalite> fonctionnalites) {
         this.fonctionnalites = fonctionnalites;
+    }
+
+    public String getCodeRole() {
+        return CodeRole;
+    }
+
+    public void setCodeRole(String codeRole) {
+        CodeRole = codeRole;
     }
 
     public int getId() {

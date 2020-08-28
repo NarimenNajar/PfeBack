@@ -13,7 +13,12 @@ public class ActiviteFormation implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE )
 
+
     private int id;
+
+    @Column(unique=true)
+    private String CodeActivitéFormation;
+
     private int typeActivite;
     private int nombreJours;
     private Date dateDebutActivite;
@@ -62,6 +67,14 @@ public class ActiviteFormation implements Serializable {
     }
 
     public ActiviteFormation() {
+    }
+
+    public String getCodeActivitéFormation() {
+        return CodeActivitéFormation;
+    }
+
+    public void setCodeActivitéFormation(String codeActivitéFormation) {
+        CodeActivitéFormation = codeActivitéFormation;
     }
 
     public int getNombreJours() {

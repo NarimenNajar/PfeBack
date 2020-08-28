@@ -13,6 +13,10 @@ public class SystemeExterne implements Serializable {
     @GeneratedValue(strategy=GenerationType.SEQUENCE )
 
     private int id;
+
+    @Column(unique=true)
+    private String CodeSystemeExterne;
+
     private String serveur;
     private String motDePasse;
     private String user;
@@ -20,6 +24,14 @@ public class SystemeExterne implements Serializable {
     private String sgbd;
 
     public SystemeExterne() {
+    }
+
+    public String getCodeSystemeExterne() {
+        return CodeSystemeExterne;
+    }
+
+    public void setCodeSystemeExterne(String codeSystemeExterne) {
+        CodeSystemeExterne = codeSystemeExterne;
     }
 
     public int getId() {

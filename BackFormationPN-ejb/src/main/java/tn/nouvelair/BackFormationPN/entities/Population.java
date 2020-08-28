@@ -15,7 +15,18 @@ public class Population implements Serializable{
     private int id;
     private String population;
 
+    @Column(unique=true)
+    private String CodePopulation;
+
     public Population() {
+    }
+
+    public String getCodePopulation() {
+        return CodePopulation;
+    }
+
+    public void setCodePopulation(String codePopulation) {
+        CodePopulation = codePopulation;
     }
 
     public int getId() {

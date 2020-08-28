@@ -12,6 +12,10 @@ public class Syllabus implements Serializable{
     @GeneratedValue(strategy= GenerationType.SEQUENCE )
 
     private int id;
+
+    @Column(unique=true)
+    private String CodeSyllabus;
+
     private String module;
     private String level;
     private String overview;
@@ -36,6 +40,14 @@ public class Syllabus implements Serializable{
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Partie> parties;
+
+    public String getCodeSyllabus() {
+        return CodeSyllabus;
+    }
+
+    public void setCodeSyllabus(String codeSyllabus) {
+        CodeSyllabus = codeSyllabus;
+    }
 
     public List<Exercice> getExercices() {
         return exercices;

@@ -10,6 +10,10 @@ public class Test implements Serializable{
 
     private int id;
     private  Date dateTest;
+
+    @Column(unique=true)
+    private String CodeTest;
+
     @ManyToOne
     private SeanceFormation seanceFormation;
 
@@ -19,6 +23,14 @@ public class Test implements Serializable{
 
     public void setSeanceFormation(SeanceFormation seanceFormation) {
         this.seanceFormation = seanceFormation;
+    }
+
+    public String getCodeTest() {
+        return CodeTest;
+    }
+
+    public void setCodeTest(String codeTest) {
+        CodeTest = codeTest;
     }
 
     public int getId() {
