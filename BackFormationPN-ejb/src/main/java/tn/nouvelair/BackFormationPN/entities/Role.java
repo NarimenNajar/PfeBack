@@ -18,7 +18,7 @@ public class Role  implements Serializable {
     @Column(unique=true)
     private String CodeRole;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER)
+    @ManyToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Fonctionnalite> fonctionnalites;

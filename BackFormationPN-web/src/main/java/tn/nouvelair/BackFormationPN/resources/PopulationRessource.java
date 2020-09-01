@@ -1,11 +1,8 @@
 package tn.nouvelair.BackFormationPN.resources;
-import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.Population;
-import tn.nouvelair.BackFormationPN.services.CategorieServiceRemote;
-import tn.nouvelair.BackFormationPN.services.PopulationServiceRemote;
+import tn.nouvelair.BackFormationPN.Interfaces.PopulationServiceRemote;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;

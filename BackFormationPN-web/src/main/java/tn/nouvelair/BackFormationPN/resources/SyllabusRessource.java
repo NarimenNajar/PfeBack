@@ -1,8 +1,6 @@
 package tn.nouvelair.BackFormationPN.resources;
-import tn.nouvelair.BackFormationPN.entities.Exercice;
 import tn.nouvelair.BackFormationPN.entities.Syllabus;
-import tn.nouvelair.BackFormationPN.services.ExerciceServiceRemote;
-import tn.nouvelair.BackFormationPN.services.SyllabusServiceRemote;
+import tn.nouvelair.BackFormationPN.Interfaces.SyllabusServiceRemote;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;

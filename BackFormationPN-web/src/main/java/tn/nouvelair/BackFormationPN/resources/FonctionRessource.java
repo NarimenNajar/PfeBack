@@ -1,15 +1,12 @@
 package tn.nouvelair.BackFormationPN.resources;
 import tn.nouvelair.BackFormationPN.entities.Fonction;
-import tn.nouvelair.BackFormationPN.entities.Fonctionnalite;
-import tn.nouvelair.BackFormationPN.services.FonctionServiceRemote;
-import tn.nouvelair.BackFormationPN.services.FonctionnaliteServiceRemote;
+import tn.nouvelair.BackFormationPN.Interfaces.FonctionServiceRemote;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 @Path("fonction")
 @RequestScoped

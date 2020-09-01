@@ -1,23 +1,20 @@
 package tn.nouvelair.BackFormationPN.services;
 
-import tn.nouvelair.BackFormationPN.entities.TypeFonction;
+import tn.nouvelair.BackFormationPN.Interfaces.TypeFormationServiceRemote;
 import tn.nouvelair.BackFormationPN.entities.TypeFormation;
 
-import java.util.logging.Logger;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 
 @Stateless
 @LocalBean
-public class TypeFormationService implements TypeFormationServiceRemote{
+public class TypeFormationService implements TypeFormationServiceRemote {
     @PersistenceContext(unitName = "OTDAV-ejb")
     EntityManager em ;
 

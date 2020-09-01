@@ -1,8 +1,6 @@
 package tn.nouvelair.BackFormationPN.resources;
-import tn.nouvelair.BackFormationPN.entities.TypeFonction;
 import tn.nouvelair.BackFormationPN.entities.TypeFormation;
-import tn.nouvelair.BackFormationPN.services.TypeFonctionServiceRemote;
-import tn.nouvelair.BackFormationPN.services.TypeFormationServiceRemote;
+import tn.nouvelair.BackFormationPN.Interfaces.TypeFormationServiceRemote;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;

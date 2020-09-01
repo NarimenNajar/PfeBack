@@ -1,23 +1,20 @@
 package tn.nouvelair.BackFormationPN.services;
 
+import tn.nouvelair.BackFormationPN.Interfaces.FonctionServiceRemote;
 import tn.nouvelair.BackFormationPN.entities.Fonction;
-import tn.nouvelair.BackFormationPN.entities.Fonctionnalite;
 
-import java.util.logging.Logger;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 
 @Stateless
 @LocalBean
-public class FonctionService implements FonctionServiceRemote{
+public class FonctionService implements FonctionServiceRemote {
     @PersistenceContext(unitName = "OTDAV-ejb")
     EntityManager em ;
 

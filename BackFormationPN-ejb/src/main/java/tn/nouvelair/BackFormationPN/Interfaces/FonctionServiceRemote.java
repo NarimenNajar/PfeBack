@@ -1,4 +1,4 @@
-package tn.nouvelair.BackFormationPN.services;
+package tn.nouvelair.BackFormationPN.Interfaces;
 import tn.nouvelair.BackFormationPN.entities.Fonction;
 import tn.nouvelair.BackFormationPN.entities.Fonctionnalite;
 

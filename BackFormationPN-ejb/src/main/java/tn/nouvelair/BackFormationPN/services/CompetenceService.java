@@ -1,22 +1,19 @@
 package tn.nouvelair.BackFormationPN.services;
-import tn.nouvelair.BackFormationPN.entities.Categorie;
+import tn.nouvelair.BackFormationPN.Interfaces.CompetenceServiceRemote;
 import tn.nouvelair.BackFormationPN.entities.Competence;
 
-import java.util.logging.Logger;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 
 @Stateless
 @LocalBean
-public class CompetenceService implements CompetenceServiceRemote{
+public class CompetenceService implements CompetenceServiceRemote {
     @PersistenceContext(unitName = "OTDAV-ejb")
 EntityManager em ;
 

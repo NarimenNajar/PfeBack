@@ -1,8 +1,6 @@
 package tn.nouvelair.BackFormationPN.resources;
-import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.Role;
-import tn.nouvelair.BackFormationPN.services.CategorieServiceRemote;
-import tn.nouvelair.BackFormationPN.services.RoleServiceRemote;
+import tn.nouvelair.BackFormationPN.Interfaces.RoleServiceRemote;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;

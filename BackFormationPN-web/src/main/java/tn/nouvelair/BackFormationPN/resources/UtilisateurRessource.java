@@ -12,8 +12,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import tn.nouvelair.BackFormationPN.services.UtilisateurService;
-import tn.nouvelair.BackFormationPN.services.UtilisateurServiceRemote;
+
+import tn.nouvelair.BackFormationPN.Interfaces.UtilisateurServiceRemote;
 import tn.nouvelair.BackFormationPN.entities.Utilisateur;
 
 

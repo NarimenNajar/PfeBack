@@ -1,9 +1,7 @@
 package tn.nouvelair.BackFormationPN.resources;
 
-import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.Exercice;
-import tn.nouvelair.BackFormationPN.services.CategorieServiceRemote;
-import tn.nouvelair.BackFormationPN.services.ExerciceServiceRemote;
+import tn.nouvelair.BackFormationPN.Interfaces.ExerciceServiceRemote;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;

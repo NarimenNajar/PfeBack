@@ -1,15 +1,12 @@
 package tn.nouvelair.BackFormationPN.services;
-import tn.nouvelair.BackFormationPN.entities.Categorie;
+import tn.nouvelair.BackFormationPN.Interfaces.PartieServiceRemote;
 import tn.nouvelair.BackFormationPN.entities.Partie;
 
-import java.util.logging.Logger;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
