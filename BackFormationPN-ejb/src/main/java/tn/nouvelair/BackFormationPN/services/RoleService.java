@@ -1,6 +1,7 @@
 package tn.nouvelair.BackFormationPN.services;
 
 import tn.nouvelair.BackFormationPN.entities.Categorie;
+import tn.nouvelair.BackFormationPN.entities.Fonctionnalite;
 import tn.nouvelair.BackFormationPN.entities.Role;
 
 import java.util.logging.Logger;
@@ -50,4 +51,34 @@ public class RoleService implements RoleServiceRemote {
         em.remove(em.find(Role.class, idRole));
 
     }
+
+
+  /* @Override
+    public List<Fonctionnalite> GetFonctionnalites(int idRole) {
+        List<Fonctionnalite> fonctionnalites=null;
+        TypedQuery<Fonctionnalite> query = em.createQuery("Select fonctionnalites, from Role e where e.id="+idRole
+                , Fonctionnalite.class);
+        try {
+            fonctionnalites = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+       fonctionnalites = query.getResultList();
+        return fonctionnalites;
+    }*/
+
+  @Override
+  public List<Fonctionnalite> GetFonctionnalites(int idRole) {
+      List<Fonctionnalite> fonctionnalites=null;
+      TypedQuery<Fonctionnalite> query = em.createQuery("Select fonctionnalites, from Role e where e.id="+idRole
+              , Fonctionnalite.class);
+
+      try {
+          fonctionnalites = query.getResultList();
+      } catch (NoResultException e ) {
+
+      }
+      return fonctionnalites;
+  }
+
 }

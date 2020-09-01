@@ -58,4 +58,12 @@ public class RoleRessource {
         Response.status(Status.CREATED).entity(" Modified").build();
         return Response.ok("Modified!").build();
     }
+
+    @GET
+    @Path("/fcts/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFonctionnalites(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.GetFonctionnalites(id)).build();
+    }
 }
