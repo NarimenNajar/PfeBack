@@ -68,6 +68,11 @@ public class Utilisateur implements Serializable {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Instruction> instructions;
 
+
+    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "utilisateur")
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<NoteTest> noteTests;
+
     public List<Instruction> getInstructions() {
         return instructions;
     }
@@ -80,6 +85,17 @@ public class Utilisateur implements Serializable {
     }
 
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public List<NoteTest> getNoteTests() {
+        return noteTests;
+    }
+
+    public void setNoteTests(List<NoteTest> noteTests) {
+        this.noteTests = noteTests;
+    }
 
     public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe, List<ActiviteFormation> activites, Role role, Categorie categorie) {
         this.codePN = codePN;
