@@ -17,7 +17,7 @@ import java.util.List;
 @LocalBean
 public class RoleService implements RoleServiceRemote {
     @PersistenceContext(unitName = "OTDAV-ejb")
-    EntityManager em ;
+    EntityManager em;
 
     @Override
     public void AjouterRole(Role role) {
@@ -26,12 +26,12 @@ public class RoleService implements RoleServiceRemote {
 
     @Override
     public List<Role> GetRoles() {
-        List<Role> roles=null;
+        List<Role> roles = null;
         TypedQuery<Role> query = em.createQuery("Select e from Role e "
                 , Role.class);
         try {
             roles = query.getResultList();
-        } catch (NoResultException e ) {
+        } catch (NoResultException e) {
 
         }
         return roles;
@@ -64,18 +64,20 @@ public class RoleService implements RoleServiceRemote {
         return fonctionnalites;
     }*/
 
-  @Override
-  public List<Fonctionnalite> GetFonctionnalites(int idRole) {
-      List<Fonctionnalite> fonctionnalites=null;
-      TypedQuery<Fonctionnalite> query = em.createQuery("Select fonctionnalites, from Role e where e.id="+idRole
-              , Fonctionnalite.class);
+    @Override
+    public List<Fonctionnalite> GetFonctionnalites(int idRole) {
+        List<Fonctionnalite> fonctionnalites = null;
+        try {
+            fonctionnalites = em.createNativeQuery("SELECT * FROM fonctionnalite f " +
+                            "LEFT JOIN role_fonctionnalite rf ON f.id = rf.fonctionnalites_id " +
+                            "LEFT JOIN role r ON r.id = rf.Role_id " +
+                            "WHERE r.id = :idRole"
+                    , Fonctionnalite.class).setParameter("idRole", idRole).getResultList();
 
-      try {
-          fonctionnalites = query.getResultList();
-      } catch (NoResultException e ) {
-
-      }
-      return fonctionnalites;
-  }
+        } catch (NoResultException e) {
+            System.out.println(e);
+        }
+        return fonctionnalites;
+    }
 
 }
