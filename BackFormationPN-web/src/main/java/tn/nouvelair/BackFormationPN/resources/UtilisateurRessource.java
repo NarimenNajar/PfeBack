@@ -35,7 +35,6 @@ public class UtilisateurRessource {
         return Response.status(401).entity("Login or Password unvalid !").build();
     }
 
-
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_JSON)
