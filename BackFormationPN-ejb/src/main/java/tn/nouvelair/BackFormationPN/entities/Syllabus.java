@@ -3,6 +3,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -114,5 +115,6 @@ public class Syllabus implements Serializable{
     }
 
     public Syllabus() {
+        this.exercices = new ArrayList<Exercice>();
     }
 }

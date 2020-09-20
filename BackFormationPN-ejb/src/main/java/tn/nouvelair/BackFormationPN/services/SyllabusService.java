@@ -1,5 +1,7 @@
 package tn.nouvelair.BackFormationPN.services;
+import tn.nouvelair.BackFormationPN.Interfaces.ExerciceServiceRemote;
 import tn.nouvelair.BackFormationPN.Interfaces.SyllabusServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.Exercice;
 import tn.nouvelair.BackFormationPN.entities.Syllabus;
 
 import javax.ejb.LocalBean;
@@ -14,12 +16,22 @@ import java.util.List;
 @Stateless
 @LocalBean
 public class SyllabusService implements SyllabusServiceRemote {
+    ExerciceServiceRemote e;
     @PersistenceContext(unitName = "OTDAV-ejb")
+
     EntityManager em ;
 
     @Override
     public void AjouterSyllabus(Syllabus syllabus) {
         em.persist(syllabus);
+
+        syllabus.getExercices().forEach((exercice) ->  System.out.println(exercice.getExercice()));
+
+        syllabus.getExercices().forEach((exercice) ->
+        {   exercice.setSyllabus(syllabus);
+            em.persist(exercice);
+        });
+        System.out.println("bagraaaaaaaaa");
 
     }
 

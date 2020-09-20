@@ -41,9 +41,7 @@ public class SyllabusRessource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response AjouterSyllabus(Syllabus syllabus) {
         metier.AjouterSyllabus(syllabus);
-
-        return Response.status(Response.Status.CREATED).entity("success").build();
-
+        return Response.status(Response.Status.CREATED).entity(syllabus).build();
 
     }
 
