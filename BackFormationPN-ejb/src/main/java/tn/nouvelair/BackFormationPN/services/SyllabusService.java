@@ -25,14 +25,48 @@ public class SyllabusService implements SyllabusServiceRemote {
     public void AjouterSyllabus(Syllabus syllabus) {
         em.persist(syllabus);
 
-        syllabus.getExercices().forEach((exercice) ->  System.out.println(exercice.getExercice()));
+        //syllabus.getExercices().forEach((exercice) ->  System.out.println(exercice.getExercice()));
 
+        /// Les Exercices
         syllabus.getExercices().forEach((exercice) ->
         {   exercice.setSyllabus(syllabus);
             em.persist(exercice);
         });
-        System.out.println("bagraaaaaaaaa");
+        System.out.println("test ex ");
 
+        // Les descriptions
+        syllabus.getDescriptions().forEach((description) ->
+        {   description.setSyllabus(syllabus);
+            em.persist(description);
+            //description.getDetails().forEach(detail);
+            description.getDetails().forEach((detail) ->
+            {   detail.setDescription(description);
+                em.persist(detail);
+                System.out.println("test detail ");
+
+            });
+        });
+        System.out.println("test desc");
+
+        // Les competences
+        syllabus.getCompetences().forEach((competence) ->
+        {   competence.setSyllabus(syllabus);
+            em.persist(competence);
+        });
+        System.out.println("test competences");
+
+        // Les parties
+        syllabus.getParties().forEach((partie) ->
+        {   partie.setSyllabus(syllabus);
+            em.persist(partie);
+            partie.getTaches().forEach((tache) ->
+            {   tache.setPartie(partie);
+                em.persist(tache);
+                System.out.println("test tache ");
+
+            });
+        });
+        System.out.println("test parties");
     }
 
     @Override
