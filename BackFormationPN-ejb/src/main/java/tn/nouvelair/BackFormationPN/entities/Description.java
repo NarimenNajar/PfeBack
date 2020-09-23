@@ -1,4 +1,5 @@
 package tn.nouvelair.BackFormationPN.entities;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -6,6 +7,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+@JsonIgnoreProperties(allowSetters = true, value = {"syllabus"})
 @Entity
 public class Description implements Serializable {
     @Id
@@ -17,7 +19,7 @@ public class Description implements Serializable {
     @ManyToOne
     private Syllabus syllabus;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "description")
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "description")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Detail> details;

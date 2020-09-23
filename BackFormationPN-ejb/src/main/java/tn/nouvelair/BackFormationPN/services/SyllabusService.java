@@ -23,6 +23,7 @@ public class SyllabusService implements SyllabusServiceRemote {
 
     @Override
     public void AjouterSyllabus(Syllabus syllabus) {
+
         em.persist(syllabus);
 
         //syllabus.getExercices().forEach((exercice) ->  System.out.println(exercice.getExercice()));
@@ -91,6 +92,12 @@ public class SyllabusService implements SyllabusServiceRemote {
     @Override
     public void deleteSyllabus(int idSyllabus) {
         em.remove(em.find(Syllabus.class, idSyllabus));
+
+    }
+
+    @Override
+    public Syllabus getSyllabusById(int idSyllabus){
+        return em.find(Syllabus.class, idSyllabus);
 
     }
 }

@@ -1,7 +1,10 @@
 package tn.nouvelair.BackFormationPN.entities;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
+@JsonIgnoreProperties(allowSetters = true, value = {"syllabus"})
 @Entity
 public class Exercice implements Serializable{
     @Id

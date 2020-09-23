@@ -1,6 +1,11 @@
 package tn.nouvelair.BackFormationPN.entities;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
+
+@JsonIgnoreProperties(allowSetters = true, value = {"partie","levels"})
 
 @Entity
 public class Tache implements Serializable{
@@ -11,6 +16,17 @@ public class Tache implements Serializable{
     private String tache;
     @ManyToOne
     private Partie partie;
+
+    @OneToMany(mappedBy = "tache")
+    private List<Level> levels;
+
+    public List<Level> getLevels() {
+        return levels;
+    }
+
+    public void setLevels(List<Level> levels) {
+        this.levels = levels;
+    }
 
     public Partie getPartie() {
         return partie;

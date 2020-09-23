@@ -11,4 +11,5 @@ public interface SyllabusServiceRemote {
     public void UpdateSyllabus(Syllabus syllabus);
     List<Syllabus> GetSyllabuss();
     public void deleteSyllabus(int idSyllabus);
+    public Syllabus getSyllabusById(int idSyllabus);
 }

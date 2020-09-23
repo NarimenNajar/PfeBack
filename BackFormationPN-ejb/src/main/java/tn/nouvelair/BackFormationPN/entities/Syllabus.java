@@ -4,6 +4,7 @@ import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 
@@ -14,30 +15,32 @@ public class Syllabus implements Serializable{
 
     private int id;
 
-    @Column(unique=true)
+
     private String CodeSyllabus;
 
     private String module;
     private String level;
     private String overview;
+    private String years;
+    private Date dateAjout;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "syllabus")
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "syllabus")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Exercice> exercices;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "syllabus")
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "syllabus")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Competence> competences;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "syllabus")
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "syllabus")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Description> descriptions;
 
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "syllabus")
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "syllabus")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Partie> parties;
@@ -48,6 +51,22 @@ public class Syllabus implements Serializable{
 
     public void setCodeSyllabus(String codeSyllabus) {
         CodeSyllabus = codeSyllabus;
+    }
+
+    public String getYears() {
+        return years;
+    }
+
+    public void setYears(String years) {
+        this.years = years;
+    }
+
+    public Date getDateAjout() {
+        return dateAjout;
+    }
+
+    public void setDateAjout(Date dateAjout) {
+        this.dateAjout = dateAjout;
     }
 
     public List<Exercice> getExercices() {

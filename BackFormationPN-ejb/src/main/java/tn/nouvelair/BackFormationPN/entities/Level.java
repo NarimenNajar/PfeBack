@@ -5,29 +5,46 @@ import javax.persistence.*;
 @Entity
 public class Level implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE )
+    @EmbeddedId
+    private LevelPK id;
 
-    private int id;
     private String level;
+
     @ManyToOne
+    @MapsId("idSeanceSimulateur")
+    @JoinColumn(name ="idSeanceSimulateur",referencedColumnName ="id",insertable = false,updatable = false)
     private SeanceSimulateur seanceSimulateur;
+
+    @ManyToOne
+    @MapsId("idTache")
+    @JoinColumn(name ="idTache",referencedColumnName ="id",insertable = false,updatable = false)
+    private Tache tache;
 
     public SeanceSimulateur getSeanceSimulateur() {
         return seanceSimulateur;
+    }
+
+    public LevelPK getId() {
+        return id;
+    }
+
+    public void setId(LevelPK id) {
+        this.id = id;
+    }
+
+    public Tache getTache() {
+        return tache;
+    }
+
+    public void setTache(Tache tache) {
+        this.tache = tache;
     }
 
     public void setSeanceSimulateur(SeanceSimulateur seanceSimulateur) {
         this.seanceSimulateur = seanceSimulateur;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getLevel() {
         return level;

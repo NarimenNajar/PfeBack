@@ -27,10 +27,10 @@ public class SeanceSimulateur implements Serializable{
 
     private String commentaire;
     private String resultFinal;
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "seanceSimulateur")
-    @Fetch(value = FetchMode.SUBSELECT)
 
+    @OneToMany(mappedBy = "seanceSimulateur")
     private List<Level> levels;
+
 
     @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "seanceSimulateur")
     @Fetch(value = FetchMode.SUBSELECT)
@@ -49,6 +49,14 @@ public class SeanceSimulateur implements Serializable{
 
     public String getCodeSeanceSimulateur() {
         return CodeSeanceSimulateur;
+    }
+
+    public List<Level> getLevels() {
+        return levels;
+    }
+
+    public void setLevels(List<Level> levels) {
+        this.levels = levels;
     }
 
     public void setCodeSeanceSimulateur(String codeSeanceSimulateur) {
@@ -95,13 +103,6 @@ public class SeanceSimulateur implements Serializable{
         this.resultFinal = resultFinal;
     }
 
-    public List<Level> getLevels() {
-        return levels;
-    }
-
-    public void setLevels(List<Level> levels) {
-        this.levels = levels;
-    }
 
     public List<Note> getNotes() {
         return notes;

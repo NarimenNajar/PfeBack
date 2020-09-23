@@ -56,4 +56,14 @@ public class SyllabusRessource {
         return Response.ok("Modified!").build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getSyllabusById (@PathParam (value = "id") int id)
+    {
+
+        //metier.getSyllabusById(id);
+        return Response.ok(metier.getSyllabusById(id)).build() ;
+    }
+
 }
