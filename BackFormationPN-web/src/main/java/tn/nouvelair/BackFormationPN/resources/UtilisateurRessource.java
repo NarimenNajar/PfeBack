@@ -81,5 +81,15 @@ public class UtilisateurRessource {
         return Response.status(Response.Status.CREATED).entity("success").build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getUtilisateurById (@PathParam (value = "id") int id)
+    {
+
+        //metier.getSyllabusById(id);
+        return Response.ok(metier.getUtilisateurById(id)).build() ;
+    }
+
 
 }

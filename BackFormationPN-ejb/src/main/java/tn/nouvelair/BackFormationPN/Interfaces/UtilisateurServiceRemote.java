@@ -18,6 +18,7 @@ public interface UtilisateurServiceRemote {
     public List<Utilisateur> SelectUsersByCategorie(Integer idCategorie);
     public List<Utilisateur> SelectUsersByRole(Integer idRole);
     public void deleteUser(int idUser);
+    public Utilisateur getUtilisateurById(int idUtilisateur);
 
 
 }

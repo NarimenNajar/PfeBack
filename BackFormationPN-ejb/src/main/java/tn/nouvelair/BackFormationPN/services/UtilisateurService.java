@@ -1,6 +1,7 @@
 package tn.nouvelair.BackFormationPN.services;
 
 import tn.nouvelair.BackFormationPN.Interfaces.UtilisateurServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.Syllabus;
 import tn.nouvelair.BackFormationPN.entities.Utilisateur;
 import java.util.logging.Logger;
 import javax.ejb.LocalBean;
@@ -99,5 +100,12 @@ public class UtilisateurService implements UtilisateurServiceRemote {
         em.remove(em.find(Utilisateur.class, idUser));
 
     }
+
+    @Override
+    public Utilisateur getUtilisateurById(int idUtilisateur){
+        return em.find(Utilisateur.class, idUtilisateur);
+
+    }
+
 
 }

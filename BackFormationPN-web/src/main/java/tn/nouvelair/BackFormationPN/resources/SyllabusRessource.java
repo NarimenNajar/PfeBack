@@ -32,7 +32,7 @@ public class SyllabusRessource {
     {
 
         metier.deleteSyllabus(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
