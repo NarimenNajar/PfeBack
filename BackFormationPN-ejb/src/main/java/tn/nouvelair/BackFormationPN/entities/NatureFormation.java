@@ -16,17 +16,17 @@ public class NatureFormation implements Serializable {
     private String natureFormation;
 
     @Column(unique=true)
-    private String CodeNatureFormation;
+    private String codeNatureFormation;
 
     public NatureFormation() {
     }
 
     public String getCodeNatureFormation() {
-        return CodeNatureFormation;
+        return codeNatureFormation;
     }
 
     public void setCodeNatureFormation(String codeNatureFormation) {
-        CodeNatureFormation = codeNatureFormation;
+        this.codeNatureFormation = codeNatureFormation;
     }
 
     public int getId() {

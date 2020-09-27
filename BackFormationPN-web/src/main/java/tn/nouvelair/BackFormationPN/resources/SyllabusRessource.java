@@ -53,7 +53,7 @@ public class SyllabusRessource {
     public Response UpdateSyllabus(@PathParam (value = "id") int id,Syllabus syllabus) {
         metier.UpdateSyllabus(syllabus);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(syllabus).build();
     }
 
     @GET

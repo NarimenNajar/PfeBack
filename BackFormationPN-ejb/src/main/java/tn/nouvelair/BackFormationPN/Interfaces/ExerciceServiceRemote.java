@@ -11,4 +11,5 @@ public interface ExerciceServiceRemote {
     public void UpdateExercice(Exercice exercice);
     List<Exercice> GetExercices();
     public void deleteExercice(int idExercice);
+    public Exercice getExerciceIdBySyllabusAndTitle(String exercice, int syllabusID);
 }

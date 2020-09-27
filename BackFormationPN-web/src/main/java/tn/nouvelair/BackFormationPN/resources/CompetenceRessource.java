@@ -33,7 +33,7 @@ public class CompetenceRessource {
     {
 
         metier.deleteCompetence(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -43,7 +43,7 @@ public class CompetenceRessource {
     public Response AjouterCompetence(Competence competence) {
         metier.AjouterCompetence(competence);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(competence).build();
 
     }
 
@@ -55,6 +55,6 @@ public class CompetenceRessource {
     public Response UpdateCompetence(@PathParam (value = "id") int id,Competence competence) {
         metier.UpdateCompetence(competence);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(competence).build();
     }
 }

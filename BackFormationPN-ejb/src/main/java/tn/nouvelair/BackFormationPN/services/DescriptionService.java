@@ -1,7 +1,9 @@
 package tn.nouvelair.BackFormationPN.services;
 import tn.nouvelair.BackFormationPN.Interfaces.DescriptionServiceRemote;
 import tn.nouvelair.BackFormationPN.entities.Description;
+import tn.nouvelair.BackFormationPN.entities.Exercice;
 
+import javax.crypto.spec.DESedeKeySpec;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -45,5 +47,22 @@ public class DescriptionService implements DescriptionServiceRemote {
     public void deleteDescription(int idDescription) {
         em.remove(em.find(Description.class, idDescription));
 
+    }
+
+    @Override
+    public Description getDescriptionIdBySyllabusAndTitle(String description, int syllabusID) {
+        TypedQuery<Description> query = em.createQuery("Select p from Description p  "
+                        +"where p.description=:description and "
+                        +"p.syllabus_id=:syllabusID"
+                , Description.class);
+
+        query.setParameter("description",description);
+        query.setParameter("syllabusID",syllabusID);
+
+        Description desc = null ;
+        desc = query.getSingleResult();
+
+
+        return desc;
     }
 }

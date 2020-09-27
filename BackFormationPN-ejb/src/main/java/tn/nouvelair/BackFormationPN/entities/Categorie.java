@@ -10,18 +10,17 @@ public class Categorie implements Serializable {
     private int id;
     private String categorie;
 
-    @Column(unique=true)
-    private String CodeCategorie;
+    private String codeCategorie;
 
     public Categorie() {
     }
 
     public String getCodeCategorie() {
-        return CodeCategorie;
+        return codeCategorie;
     }
 
     public void setCodeCategorie(String codeCategorie) {
-        CodeCategorie = codeCategorie;
+        this.codeCategorie = codeCategorie;
     }
 
     public Categorie(String categorie) {

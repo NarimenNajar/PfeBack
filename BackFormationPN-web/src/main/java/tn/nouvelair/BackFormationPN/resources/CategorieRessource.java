@@ -32,7 +32,7 @@ public class CategorieRessource {
     {
 
         metier.deleteCategorie(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -42,7 +42,7 @@ public class CategorieRessource {
     public Response AjouterCategorie(Categorie categorie) {
         metier.AjouterCategorie(categorie);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(categorie).build();
         //return Response.ok(metier.AjouterCategorie(categorie)).build();
 
     }
@@ -55,7 +55,16 @@ public class CategorieRessource {
     public Response UpdateCategorie(@PathParam (value = "id") int id,Categorie categorie) {
         metier.UpdateCategorie(categorie);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(categorie).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getCategorieById (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getCategorieById(id)).build() ;
     }
 }
 

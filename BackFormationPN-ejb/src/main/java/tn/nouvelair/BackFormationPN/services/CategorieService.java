@@ -1,6 +1,7 @@
 package tn.nouvelair.BackFormationPN.services;
 import tn.nouvelair.BackFormationPN.Interfaces.CategorieServiceRemote;
 import tn.nouvelair.BackFormationPN.entities.Categorie;
+import tn.nouvelair.BackFormationPN.entities.Utilisateur;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -45,6 +46,12 @@ public class CategorieService implements CategorieServiceRemote {
     @Override
     public void deleteCategorie(int idCategorie) {
         em.remove(em.find(Categorie.class, idCategorie));
+
+    }
+
+    @Override
+    public Categorie getCategorieById(int idCategorie){
+        return em.find(Categorie.class, idCategorie);
 
     }
 }

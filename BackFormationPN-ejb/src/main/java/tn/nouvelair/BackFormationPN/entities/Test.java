@@ -13,7 +13,7 @@ public class Test implements Serializable{
     private  Date dateTest;
 
     @Column(unique=true)
-    private String CodeTest;
+    private String codeTest;
 
     @ManyToOne
     private SeanceFormation seanceFormation;
@@ -29,9 +29,6 @@ public class Test implements Serializable{
         this.seanceFormation = seanceFormation;
     }
 
-    public String getCodeTest() {
-        return CodeTest;
-    }
 
     public List<NoteTest> getNoteTests() {
         return noteTests;
@@ -41,8 +38,12 @@ public class Test implements Serializable{
         this.noteTests = noteTests;
     }
 
+    public String getCodeTest() {
+        return codeTest;
+    }
+
     public void setCodeTest(String codeTest) {
-        CodeTest = codeTest;
+        this.codeTest = codeTest;
     }
 
     public int getId() {

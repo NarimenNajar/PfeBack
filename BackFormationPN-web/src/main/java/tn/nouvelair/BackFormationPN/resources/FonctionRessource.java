@@ -31,7 +31,7 @@ public class FonctionRessource {
     {
 
         metier.deleteFonction(id);
-        return Response.status(Response.Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Response.Status.OK).build() ;
     }
 
 
@@ -41,7 +41,7 @@ public class FonctionRessource {
     public Response AjouterFonction(Fonction fonction) {
         metier.AjouterFonction(fonction);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(fonction).build();
 
 
     }
@@ -54,6 +54,6 @@ public class FonctionRessource {
     public Response UpdateFonction(@PathParam (value = "id") int id,Fonction fonction) {
         metier.UpdateFonction(fonction);
         Response.status(Response.Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(fonction).build();
     }
 }

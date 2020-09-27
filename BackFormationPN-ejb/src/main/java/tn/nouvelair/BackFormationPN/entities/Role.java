@@ -16,7 +16,7 @@ public class Role  implements Serializable {
     private String role;
 
     @Column(unique=true)
-    private String CodeRole;
+    private String codeRole;
 
     @ManyToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -32,11 +32,11 @@ public class Role  implements Serializable {
     }
 
     public String getCodeRole() {
-        return CodeRole;
+        return codeRole;
     }
 
     public void setCodeRole(String codeRole) {
-        CodeRole = codeRole;
+        this.codeRole = codeRole;
     }
 
     public int getId() {

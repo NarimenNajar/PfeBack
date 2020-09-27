@@ -33,7 +33,7 @@ public class ExerciceRessource {
     {
 
         metier.deleteExercice(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -43,7 +43,7 @@ public class ExerciceRessource {
     public Response AjouterExercice(Exercice exercice) {
         metier.AjouterExercice(exercice);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(exercice).build();
 
 
     }
@@ -56,6 +56,6 @@ public class ExerciceRessource {
     public Response UpdateExercice(@PathParam (value = "id") int id,Exercice exercice) {
         metier.UpdateExercice(exercice);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(exercice).build();
     }
 }

@@ -21,7 +21,7 @@ public class SeanceSimulateur implements Serializable{
     private Simulateur simulateur;
 
     @Column(unique=true)
-    private String CodeSeanceSimulateur;
+    private String codeSeanceSimulateur;
 
     private Date dateSeanceSimulateur;
 
@@ -47,9 +47,6 @@ public class SeanceSimulateur implements Serializable{
     public SeanceSimulateur() {
     }
 
-    public String getCodeSeanceSimulateur() {
-        return CodeSeanceSimulateur;
-    }
 
     public List<Level> getLevels() {
         return levels;
@@ -59,8 +56,12 @@ public class SeanceSimulateur implements Serializable{
         this.levels = levels;
     }
 
+    public String getCodeSeanceSimulateur() {
+        return codeSeanceSimulateur;
+    }
+
     public void setCodeSeanceSimulateur(String codeSeanceSimulateur) {
-        CodeSeanceSimulateur = codeSeanceSimulateur;
+        this.codeSeanceSimulateur = codeSeanceSimulateur;
     }
 
     public Date getDateSeanceSimulateur() {

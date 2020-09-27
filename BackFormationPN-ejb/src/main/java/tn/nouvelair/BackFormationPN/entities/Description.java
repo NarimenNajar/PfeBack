@@ -4,7 +4,10 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import javax.persistence.*;
 
 @JsonIgnoreProperties(allowSetters = true, value = {"syllabus"})
@@ -22,7 +25,7 @@ public class Description implements Serializable {
     @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "description")
     @Fetch(value = FetchMode.SUBSELECT)
 
-    private List<Detail> details;
+    private List<Detail> details ;
 
     public List<Detail> getDetails() {
         return details;

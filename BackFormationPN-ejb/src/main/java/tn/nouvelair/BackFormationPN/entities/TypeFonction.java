@@ -15,17 +15,17 @@ public class TypeFonction implements Serializable {
     private String typeFonction;
 
     @Column(unique=true)
-    private String CodeTypeFonction;
+    private String codeTypeFonction;
 
     public TypeFonction() {
     }
 
     public String getCodeTypeFonction() {
-        return CodeTypeFonction;
+        return codeTypeFonction;
     }
 
     public void setCodeTypeFonction(String codeTypeFonction) {
-        CodeTypeFonction = codeTypeFonction;
+        this.codeTypeFonction = codeTypeFonction;
     }
 
     public int getId() {

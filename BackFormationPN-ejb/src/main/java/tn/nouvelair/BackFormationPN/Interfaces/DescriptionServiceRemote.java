@@ -11,4 +11,5 @@ public interface DescriptionServiceRemote {
     public void UpdateDescription(Description description);
     List<Description> GetDescriptions();
     public void deleteDescription(int idDescription);
+    public Description getDescriptionIdBySyllabusAndTitle(String description, int syllabusID);
 }

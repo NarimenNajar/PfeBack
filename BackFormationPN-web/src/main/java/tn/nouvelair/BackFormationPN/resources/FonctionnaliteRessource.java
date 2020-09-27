@@ -32,7 +32,7 @@ public class FonctionnaliteRessource {
     {
 
         metier.deleteFonctionnalite(id);
-        return Response.status(Response.Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Response.Status.OK).build() ;
     }
 
 
@@ -42,7 +42,7 @@ public class FonctionnaliteRessource {
     public Response AjouterFonctionnalite(Fonctionnalite fonctionnalite) {
         metier.AjouterFonctionnalite(fonctionnalite);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(fonctionnalite).build();
 
 
     }
@@ -55,6 +55,6 @@ public class FonctionnaliteRessource {
     public Response UpdateFonctionnalite(@PathParam (value = "id") int id,Fonctionnalite fonctionnalite) {
         metier.UpdateFonctionnalite(fonctionnalite);
         Response.status(Response.Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(fonctionnalite).build();
     }
 }

@@ -69,7 +69,7 @@ public class UtilisateurRessource {
     {
 
         metier.deleteUser(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
     @POST
@@ -78,7 +78,7 @@ public class UtilisateurRessource {
     public Response AjouterUtilisateur(Utilisateur utilisateur) {
         metier.AjouterUtilisateur(utilisateur);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(utilisateur).build();
     }
 
     @GET

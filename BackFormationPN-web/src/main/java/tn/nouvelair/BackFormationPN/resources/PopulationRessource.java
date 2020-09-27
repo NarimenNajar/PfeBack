@@ -30,7 +30,7 @@ public class PopulationRessource {
     {
 
         metier.deletePopulation(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -40,7 +40,7 @@ public class PopulationRessource {
     public Response AjouterPopulation(Population population) {
         metier.AjouterPopulation(population);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(population).build();
 
     }
 
@@ -51,9 +51,16 @@ public class PopulationRessource {
     public Response UpdatePopulation(@PathParam (value = "id") int id,Population population) {
         metier.UpdatePopulation(population);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(population).build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getPopulationById (@PathParam (value = "id") int id)
+    {
 
+        return Response.ok(metier.getPopulationById(id)).build() ;
+    }
 
 }

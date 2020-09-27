@@ -19,6 +19,7 @@ public class Formation extends ActiviteFormation implements Serializable {
 
 
 
+
     private String TitreFormation;
 
     @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "formation")

@@ -33,7 +33,7 @@ public class PartieRessource {
     {
 
         metier.deletePartie(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -43,7 +43,7 @@ public class PartieRessource {
     public Response AjouterPartie(Partie partie) {
         metier.AjouterPartie(partie);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(partie).build();
 
     }
 
@@ -55,6 +55,6 @@ public class PartieRessource {
     public Response UpdatePartie(@PathParam (value = "id") int id,Partie partie) {
         metier.UpdatePartie(partie);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(partie).build();
     }
 }

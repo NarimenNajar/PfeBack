@@ -17,7 +17,7 @@ public class ActiviteFormation implements Serializable {
     private int id;
 
     @Column(unique=true)
-    private String CodeActivitéFormation;
+    private String codeActivitéFormation;
 
     private int typeActivite;
     private int nombreJours;
@@ -70,11 +70,11 @@ public class ActiviteFormation implements Serializable {
     }
 
     public String getCodeActivitéFormation() {
-        return CodeActivitéFormation;
+        return codeActivitéFormation;
     }
 
     public void setCodeActivitéFormation(String codeActivitéFormation) {
-        CodeActivitéFormation = codeActivitéFormation;
+        this.codeActivitéFormation = codeActivitéFormation;
     }
 
     public int getNombreJours() {

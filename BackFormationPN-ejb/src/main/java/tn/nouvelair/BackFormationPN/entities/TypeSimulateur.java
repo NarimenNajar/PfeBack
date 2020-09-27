@@ -18,7 +18,7 @@ public class TypeSimulateur  implements Serializable{
 
 
     @Column(unique=true)
-    private String CodeTypeSimulateur;
+    private String codeTypeSimulateur;
 
     public TypeSimulateur() {
     }
@@ -40,10 +40,10 @@ public class TypeSimulateur  implements Serializable{
     }
 
     public String getCodeTypeSimulateur() {
-        return CodeTypeSimulateur;
+        return codeTypeSimulateur;
     }
 
     public void setCodeTypeSimulateur(String codeTypeSimulateur) {
-        CodeTypeSimulateur = codeTypeSimulateur;
+        this.codeTypeSimulateur = codeTypeSimulateur;
     }
 }

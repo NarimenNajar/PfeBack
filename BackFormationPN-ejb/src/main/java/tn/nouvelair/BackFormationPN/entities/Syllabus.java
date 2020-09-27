@@ -3,9 +3,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import javax.persistence.*;
 
 @Entity
@@ -16,7 +14,7 @@ public class Syllabus implements Serializable{
     private int id;
 
 
-    private String CodeSyllabus;
+    private String codeSyllabus;
 
     private String module;
     private String level;
@@ -27,12 +25,12 @@ public class Syllabus implements Serializable{
     @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "syllabus")
     @Fetch(value = FetchMode.SUBSELECT)
 
-    private List<Exercice> exercices;
+    private List<Exercice> exercices ;
 
     @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "syllabus")
     @Fetch(value = FetchMode.SUBSELECT)
 
-    private List<Competence> competences;
+    private List<Competence> competences ;
 
     @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "syllabus")
     @Fetch(value = FetchMode.SUBSELECT)
@@ -45,12 +43,13 @@ public class Syllabus implements Serializable{
 
     private List<Partie> parties;
 
+
     public String getCodeSyllabus() {
-        return CodeSyllabus;
+        return codeSyllabus;
     }
 
     public void setCodeSyllabus(String codeSyllabus) {
-        CodeSyllabus = codeSyllabus;
+        this.codeSyllabus = codeSyllabus;
     }
 
     public String getYears() {

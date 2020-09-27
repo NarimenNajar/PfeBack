@@ -1,4 +1,5 @@
 package tn.nouvelair.BackFormationPN.resources;
+import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.SystemeExterne;
 import tn.nouvelair.BackFormationPN.Interfaces.SystemeExterneServiceRemote;
 
@@ -24,13 +25,12 @@ public class SystemeExterneRessource {
     }
 
     @POST
-    @Path("/addSys")
+    @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response AjouterSysExterne(SystemeExterne systemeExterne) {
         metier.AjouterSysExterne(systemeExterne);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
-        //return Response.ok(metier.AjouterCategorie(categorie)).build();
+        return Response.status(Response.Status.CREATED).entity(systemeExterne).build();
 
     }
 
@@ -41,7 +41,24 @@ public class SystemeExterneRessource {
     {
 
         metier.deleteSysExterne(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;    }
+
+    @PUT
+    @Path("update/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response UpdateExterne(@PathParam (value = "id") int id, SystemeExterne systemeExterne) {
+        metier.UpdateSysExterne(systemeExterne);
+        Response.status(Status.CREATED).entity(" Modified").build();
+        return Response.ok(systemeExterne).build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getSysExterneById (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getSysExterneById(id)).build() ;
+    }
 }

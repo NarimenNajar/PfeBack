@@ -44,18 +44,7 @@ public class Utilisateur implements Serializable {
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Fonction> fonctions;
-/*
-    @ManyToMany  ( mappedBy = "utilisateurs")
-    private List<Activite> activites;
 
-
-    public List<Activite> getActivites() {
-        return activites;
-    }
-      public void setActivites(List<Activite> activites) {
-        this.activites = activites;
-    }
-*/
     @ManyToOne(cascade=CascadeType.MERGE , fetch=FetchType.EAGER)
 
     private Role role;
@@ -110,7 +99,6 @@ public class Utilisateur implements Serializable {
         this.nationalite = nationalite;
         this.typePN = typePN;
         this.sexe = sexe;
-        //this.activites = activites;
         this.role = role;
         this.categorie = categorie;
 
@@ -297,7 +285,6 @@ public class Utilisateur implements Serializable {
                 Objects.equals(dateFinContrat, that.dateFinContrat) &&
                 Objects.equals(nationalite, that.nationalite) &&
                 Objects.equals(sexe, that.sexe) &&
-                //Objects.equals(activites, that.activites) &&
                 Objects.equals(role, that.role) &&
                 Objects.equals(categorie, that.categorie) ;
     }

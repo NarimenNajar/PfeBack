@@ -17,7 +17,7 @@ public class TypeFormation implements Serializable{
     private String titreFormation;
 
     @Column(unique=true)
-    private String CodeTypeFormation;
+    private String codeTypeFormation;
 
     @ManyToOne(cascade=CascadeType.MERGE , fetch=FetchType.EAGER)
     private ParametrageEcheance parametrageEcheance;
@@ -34,11 +34,11 @@ public class TypeFormation implements Serializable{
     }
 
     public String getCodeTypeFormation() {
-        return CodeTypeFormation;
+        return codeTypeFormation;
     }
 
     public void setCodeTypeFormation(String codeTypeFormation) {
-        CodeTypeFormation = codeTypeFormation;
+        this.codeTypeFormation = codeTypeFormation;
     }
 
     public ParametrageEcheance getParametrageEcheance() {

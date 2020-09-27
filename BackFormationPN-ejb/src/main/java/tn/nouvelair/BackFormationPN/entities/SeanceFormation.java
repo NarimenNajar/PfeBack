@@ -19,7 +19,7 @@ public class SeanceFormation  implements Serializable{
     private Date dateSeanceFormation;
 
     @Column(unique=true)
-    private String CodeSeanceFormation;
+    private String codeSeanceFormation;
 
     @ManyToOne
     private Formation formation;
@@ -28,11 +28,11 @@ public class SeanceFormation  implements Serializable{
     }
 
     public String getCodeSeanceFormation() {
-        return CodeSeanceFormation;
+        return codeSeanceFormation;
     }
 
     public void setCodeSeanceFormation(String codeSeanceFormation) {
-        CodeSeanceFormation = codeSeanceFormation;
+        this.codeSeanceFormation = codeSeanceFormation;
     }
 
     public int getId() {

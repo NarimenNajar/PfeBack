@@ -32,7 +32,7 @@ public class TypeFormationRessource {
     {
 
         metier.deleteTypeFormation(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -42,7 +42,7 @@ public class TypeFormationRessource {
     public Response AjouterTypeFormation(TypeFormation typeFormation) {
         metier.AjouterTypeFormation(typeFormation);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(typeFormation).build();
 
     }
 
@@ -54,7 +54,7 @@ public class TypeFormationRessource {
     public Response UpdateTypeFormation(@PathParam (value = "id") int id,TypeFormation typeFormation) {
         metier.UpdateTypeFormation(typeFormation);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(typeFormation).build();
     }
 
 }

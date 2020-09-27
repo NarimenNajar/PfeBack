@@ -1,5 +1,6 @@
 package tn.nouvelair.BackFormationPN.services;
 import tn.nouvelair.BackFormationPN.Interfaces.PopulationServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.Population;
 
 import javax.ejb.LocalBean;
@@ -45,6 +46,12 @@ public class PopulationService implements PopulationServiceRemote {
     @Override
     public void deletePopulation(int idpopulation) {
         em.remove(em.find(Population.class, idpopulation));
+
+    }
+
+    @Override
+    public Population getPopulationById(int idPopulation){
+        return em.find(Population.class, idPopulation);
 
     }
 }

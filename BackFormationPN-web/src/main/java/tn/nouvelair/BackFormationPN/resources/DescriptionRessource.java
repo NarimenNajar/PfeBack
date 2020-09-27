@@ -33,7 +33,7 @@ public class DescriptionRessource {
     {
 
         metier.deleteDescription(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -43,7 +43,7 @@ public class DescriptionRessource {
     public Response AjouterDescription(Description description) {
         metier.AjouterDescription(description);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(description).build();
         //return Response.ok(metier.AjouterCategorie(categorie)).build();
 
     }
@@ -56,6 +56,6 @@ public class DescriptionRessource {
     public Response UpdateDescription(@PathParam (value = "id") int id,Description description) {
         metier.UpdateDescription(description);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(description).build();
     }
 }

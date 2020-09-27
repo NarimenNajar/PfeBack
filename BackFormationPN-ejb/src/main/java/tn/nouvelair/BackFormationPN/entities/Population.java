@@ -16,17 +16,17 @@ public class Population implements Serializable{
     private String population;
 
     @Column(unique=true)
-    private String CodePopulation;
+    private String codePopulation;
 
     public Population() {
     }
 
     public String getCodePopulation() {
-        return CodePopulation;
+        return codePopulation;
     }
 
     public void setCodePopulation(String codePopulation) {
-        CodePopulation = codePopulation;
+        this.codePopulation = codePopulation;
     }
 
     public int getId() {

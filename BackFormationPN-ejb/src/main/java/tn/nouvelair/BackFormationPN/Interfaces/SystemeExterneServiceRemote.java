@@ -12,6 +12,6 @@ public interface SystemeExterneServiceRemote {
     List<SystemeExterne> GetSystemesExternes();
     public void deleteSysExterne(int idSys);
     public void UpdateSysExterne(SystemeExterne systemeExterne);
-
+    public SystemeExterne getSysExterneById(int idSysExterne);
 
 }

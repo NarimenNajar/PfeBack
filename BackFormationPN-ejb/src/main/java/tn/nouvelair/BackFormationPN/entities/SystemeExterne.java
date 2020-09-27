@@ -15,7 +15,7 @@ public class SystemeExterne implements Serializable {
     private int id;
 
     @Column(unique=true)
-    private String CodeSystemeExterne;
+    private String codeSystemeExterne;
 
     private String serveur;
     private String motDePasse;
@@ -27,11 +27,11 @@ public class SystemeExterne implements Serializable {
     }
 
     public String getCodeSystemeExterne() {
-        return CodeSystemeExterne;
+        return codeSystemeExterne;
     }
 
     public void setCodeSystemeExterne(String codeSystemeExterne) {
-        CodeSystemeExterne = codeSystemeExterne;
+        this.codeSystemeExterne = codeSystemeExterne;
     }
 
     public int getId() {

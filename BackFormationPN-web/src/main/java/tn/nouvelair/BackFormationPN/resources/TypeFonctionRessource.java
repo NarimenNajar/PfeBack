@@ -32,7 +32,7 @@ public class TypeFonctionRessource {
     {
 
         metier.deleteTypeFonction(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -42,7 +42,7 @@ public class TypeFonctionRessource {
     public Response AjouterTypeFonction(TypeFonction typeFonction) {
         metier.AjouterTypeFonction(typeFonction);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(typeFonction).build();
 
     }
 
@@ -54,6 +54,6 @@ public class TypeFonctionRessource {
     public Response UpdateTypeFonction(@PathParam (value = "id") int id,TypeFonction typeFonction) {
         metier.UpdateTypeFonction(typeFonction);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(typeFonction).build();
     }
 }

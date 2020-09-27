@@ -15,7 +15,7 @@ public class TypeAlerte implements Serializable {
     private String typeAlerte;
 
     @Column(unique=true)
-    private String CodeTypeAlerte;
+    private String codeTypeAlerte;
 
     public TypeAlerte() {
     }
@@ -37,10 +37,10 @@ public class TypeAlerte implements Serializable {
     }
 
     public String getCodeTypeAlerte() {
-        return CodeTypeAlerte;
+        return codeTypeAlerte;
     }
 
     public void setCodeTypeAlerte(String codeTypeAlerte) {
-        CodeTypeAlerte = codeTypeAlerte;
+        this.codeTypeAlerte = codeTypeAlerte;
     }
 }

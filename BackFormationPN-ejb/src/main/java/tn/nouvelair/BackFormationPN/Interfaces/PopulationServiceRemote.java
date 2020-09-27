@@ -12,4 +12,5 @@ public interface PopulationServiceRemote {
     public void UpdatePopulation(Population population);
     List<Population> GetPopulations();
     public void deletePopulation(int idPopulation);
+    public Population getPopulationById(int idPopulation);
 }

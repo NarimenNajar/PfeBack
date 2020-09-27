@@ -4,7 +4,10 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import javax.persistence.*;
 
 @JsonIgnoreProperties(allowSetters = true, value = {"syllabus"})

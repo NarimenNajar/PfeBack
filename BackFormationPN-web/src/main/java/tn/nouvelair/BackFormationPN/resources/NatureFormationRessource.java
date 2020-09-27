@@ -33,7 +33,7 @@ public class NatureFormationRessource {
     {
 
         metier.deleteNatureFormation(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -43,7 +43,7 @@ public class NatureFormationRessource {
     public Response AjouterNatureFormation(NatureFormation natureFormation) {
         metier.AjouterNatureFormation(natureFormation);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(natureFormation).build();
 
     }
 
@@ -55,7 +55,7 @@ public class NatureFormationRessource {
     public Response UpdateNatureFormation(@PathParam (value = "id") int id,NatureFormation natureFormation) {
         metier.UpdateNatureFormation(natureFormation);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(natureFormation).build();
     }
 
 }

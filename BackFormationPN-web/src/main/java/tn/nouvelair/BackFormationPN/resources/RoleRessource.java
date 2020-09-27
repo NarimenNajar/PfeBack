@@ -32,7 +32,7 @@ public class RoleRessource {
     {
 
         metier.deleteRole(id);
-        return Response.status(Status.OK).entity("suppression avec succées").build() ;
+        return Response.status(Status.OK).build() ;
     }
 
 
@@ -42,7 +42,7 @@ public class RoleRessource {
     public Response AjouterRole(Role role) {
         metier.AjouterRole(role);
 
-        return Response.status(Response.Status.CREATED).entity("success").build();
+        return Response.status(Response.Status.CREATED).entity(role).build();
 
     }
 
@@ -54,14 +54,14 @@ public class RoleRessource {
     public Response UpdateRole(@PathParam (value = "id") int id,Role role) {
         metier.UpdateRole(role);
         Response.status(Status.CREATED).entity(" Modified").build();
-        return Response.ok("Modified!").build();
+        return Response.ok(role).build();
     }
 
     @GET
-    @Path("/fcts/{id}")
+    @Path("/fcts/{idRole}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getFonctionnalites(@PathParam (value = "id") int id){
+    public Response getFonctionnalites(@PathParam (value = "idRole") int idRole){
 
-        return Response.ok(metier.GetFonctionnalites(id)).build();
+        return Response.ok(metier.GetFonctionnalites(idRole)).build();
     }
 }

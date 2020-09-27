@@ -12,5 +12,6 @@ public interface CategorieServiceRemote {
     public void UpdateCategorie(Categorie categorie);
     List<Categorie> GetCategories();
     public void deleteCategorie(int idCategorie);
+    public Categorie getCategorieById(int idCategorie);
 
 }

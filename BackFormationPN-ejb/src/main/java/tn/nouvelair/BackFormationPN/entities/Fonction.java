@@ -16,7 +16,7 @@ public class Fonction implements Serializable {
     private int id;
 
     @Column(unique=true)
-    private String CodeFonction;
+    private String codeFonction;
 
     private Date dateDebut ;
 
@@ -35,11 +35,11 @@ public class Fonction implements Serializable {
     }
 
     public String getCodeFonction() {
-        return CodeFonction;
+        return codeFonction;
     }
 
     public void setCodeFonction(String codeFonction) {
-        CodeFonction = codeFonction;
+        this.codeFonction = codeFonction;
     }
 
     public TypeFonction getTypeFonction() {

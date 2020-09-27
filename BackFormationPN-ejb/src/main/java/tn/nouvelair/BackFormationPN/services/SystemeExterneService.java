@@ -1,6 +1,7 @@
 package tn.nouvelair.BackFormationPN.services;
 
 import tn.nouvelair.BackFormationPN.Interfaces.SystemeExterneServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.SystemeExterne;
 
 import javax.ejb.LocalBean;
@@ -46,6 +47,12 @@ public class SystemeExterneService implements SystemeExterneServiceRemote {
     @Override
     public void UpdateSysExterne(SystemeExterne systemeExterne) {
         em.merge(systemeExterne);
+
+    }
+
+    @Override
+    public SystemeExterne getSysExterneById(int idSysExterne){
+        return em.find(SystemeExterne.class, idSysExterne);
 
     }
 }
