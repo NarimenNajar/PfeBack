@@ -19,7 +19,7 @@ public class Description implements Serializable {
     private int id;
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private Syllabus syllabus;
 
     @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "description")

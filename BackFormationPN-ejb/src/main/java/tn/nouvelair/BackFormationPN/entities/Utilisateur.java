@@ -1,4 +1,5 @@
 package tn.nouvelair.BackFormationPN.entities;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -11,6 +12,7 @@ import javax.persistence.ManyToOne;
 import java.util.*;
 import java.util.ArrayList;
 
+@JsonIgnoreProperties(allowSetters = true, value = {"noteTests"})
 @Entity
 public class Utilisateur implements Serializable {
 

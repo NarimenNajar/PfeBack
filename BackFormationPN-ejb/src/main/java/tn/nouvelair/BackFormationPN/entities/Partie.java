@@ -19,7 +19,7 @@ public class Partie implements Serializable{
     private int id;
     private String partie;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private Syllabus syllabus;
 
     @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "partie")

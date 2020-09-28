@@ -14,7 +14,8 @@ public class Tache implements Serializable{
 
     private int id;
     private String tache;
-    @ManyToOne
+
+    @ManyToOne(fetch=FetchType.LAZY)
     private Partie partie;
 
     @OneToMany(mappedBy = "tache")

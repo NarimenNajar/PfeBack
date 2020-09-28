@@ -12,7 +12,7 @@ public class Detail implements Serializable {
 
     private int id;
     private String detail;
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private Description description;
 
 

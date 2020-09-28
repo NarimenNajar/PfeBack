@@ -1,5 +1,7 @@
 package tn.nouvelair.BackFormationPN.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.Objects;
 import javax.persistence.*;
 import javax.persistence.ManyToOne;
 
-
+@JsonIgnoreProperties(allowSetters = true, value = {"utilisateur"})
 @Entity
 public class Fonction implements Serializable {
 

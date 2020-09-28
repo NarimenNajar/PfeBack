@@ -12,7 +12,8 @@ public class Competence implements Serializable {
 
     private int id;
     private String competence;
-    @ManyToOne
+
+    @ManyToOne(fetch=FetchType.LAZY)
     private Syllabus syllabus;
 
     public Syllabus getSyllabus() {

@@ -13,7 +13,7 @@ public class Exercice implements Serializable{
     private int id;
     private String exercice;
 
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     private Syllabus syllabus;
 
     public int getId() {
