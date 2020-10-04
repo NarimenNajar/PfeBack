@@ -1,4 +1,8 @@
 package tn.nouvelair.BackFormationPN.entities;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
@@ -7,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
+@JsonIgnoreProperties(allowSetters = true, value = {"instructions"})
 
 @Entity
 public class ActiviteFormation implements Serializable {
@@ -17,7 +22,7 @@ public class ActiviteFormation implements Serializable {
     private int id;
 
     @Column(unique=true)
-    private String codeActivitéFormation;
+    private String codeActiviteFormation;
 
     private int typeActivite;
     private int nombreJours;
@@ -28,9 +33,9 @@ public class ActiviteFormation implements Serializable {
 
     private NatureFormation natureFormation;
 
-    @ManyToOne(cascade=CascadeType.MERGE , fetch=FetchType.EAGER)
-
-    private Population population;
+    @ManyToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Population> populations;
 
     @ManyToOne(cascade=CascadeType.MERGE , fetch=FetchType.EAGER)
 
@@ -69,12 +74,12 @@ public class ActiviteFormation implements Serializable {
     public ActiviteFormation() {
     }
 
-    public String getCodeActivitéFormation() {
-        return codeActivitéFormation;
+    public String getCodeActiviteFormation() {
+        return codeActiviteFormation;
     }
 
-    public void setCodeActivitéFormation(String codeActivitéFormation) {
-        this.codeActivitéFormation = codeActivitéFormation;
+    public void setCodeActiviteFormation(String codeActiviteFormation) {
+        this.codeActiviteFormation = codeActiviteFormation;
     }
 
     public int getNombreJours() {
@@ -127,12 +132,12 @@ public class ActiviteFormation implements Serializable {
         this.natureFormation = natureFormation;
     }
 
-    public Population getPopulation() {
-        return population;
+    public List<Population> getPopulations() {
+        return populations;
     }
 
-    public void setPopulation(Population population) {
-        this.population = population;
+    public void setPopulations(List<Population> populations) {
+        this.populations = populations;
     }
 
     public TypeFormation getTypeFormation() {

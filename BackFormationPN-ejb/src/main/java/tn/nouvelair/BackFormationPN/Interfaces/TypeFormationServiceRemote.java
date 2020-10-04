@@ -11,4 +11,5 @@ public interface TypeFormationServiceRemote {
     public void UpdateTypeFormation(TypeFormation typeFormation);
     List<TypeFormation> GetTypeFormations();
     public void deleteTypeFormation(int idtypeFormation);
+    public TypeFormation getTypeFormationById(int idTypeFormation);
 }

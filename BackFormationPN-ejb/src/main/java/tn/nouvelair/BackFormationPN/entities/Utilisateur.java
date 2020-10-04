@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import java.util.*;
 import java.util.ArrayList;
 
-@JsonIgnoreProperties(allowSetters = true, value = {"noteTests"})
+@JsonIgnoreProperties(allowSetters = true, value = {"noteTests", "fonctions", "instructions"})
 @Entity
 public class Utilisateur implements Serializable {
 
@@ -55,16 +55,16 @@ public class Utilisateur implements Serializable {
 
     private Categorie categorie;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "utilisateur")
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "utilisateur")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Instruction> instructions;
 
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "utilisateur")
+    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy ="utilisateur")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<NoteTest> noteTests;
 
-    public List<Instruction> getInstructions() {
+  public List<Instruction> getInstructions() {
         return instructions;
     }
 
@@ -88,7 +88,7 @@ public class Utilisateur implements Serializable {
         this.noteTests = noteTests;
     }
 
-    public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe, List<ActiviteFormation> activites, Role role, Categorie categorie) {
+   /* public Utilisateur(String codePN, String numLicencePN, String nom, String prenom, int rank, int cin, Date dateNaissance, Date dateDebutContrat, Date dateFinContrat, String nationalite, int typePN, String sexe, List<ActiviteFormation> activites, Role role, Categorie categorie) {
         this.codePN = codePN;
         this.numLicencePN = numLicencePN;
         this.nom = nom;
@@ -121,7 +121,7 @@ public class Utilisateur implements Serializable {
         this.sexe = sexe;
 
 
-    }
+    }*/
 
     public String getNumeroTel() {
         return numeroTel;
@@ -272,7 +272,7 @@ public class Utilisateur implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Utilisateur)) return false;
         Utilisateur that = (Utilisateur) o;
         return id == that.id &&
                 rank == that.rank &&
@@ -287,9 +287,17 @@ public class Utilisateur implements Serializable {
                 Objects.equals(dateFinContrat, that.dateFinContrat) &&
                 Objects.equals(nationalite, that.nationalite) &&
                 Objects.equals(sexe, that.sexe) &&
+                Objects.equals(numeroTel, that.numeroTel) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(fonctions, that.fonctions) &&
                 Objects.equals(role, that.role) &&
-                Objects.equals(categorie, that.categorie) ;
+                Objects.equals(categorie, that.categorie) &&
+                Objects.equals(instructions, that.instructions) &&
+                Objects.equals(noteTests, that.noteTests);
     }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, codePN, numLicencePN, nom, prenom, rank, cin, dateNaissance, dateDebutContrat, dateFinContrat, nationalite, typePN, sexe, numeroTel, email, fonctions, role, categorie, instructions, noteTests);
+    }
 }

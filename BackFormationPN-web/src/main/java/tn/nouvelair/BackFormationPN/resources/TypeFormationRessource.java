@@ -57,4 +57,13 @@ public class TypeFormationRessource {
         return Response.ok(typeFormation).build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getTypeFormationById (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getTypeFormationById(id)).build() ;
+    }
+
 }

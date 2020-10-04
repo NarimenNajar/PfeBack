@@ -1,17 +1,35 @@
 package tn.nouvelair.BackFormationPN.entities;
+import sun.plugin.com.event.COMEventHandler;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
 public class Note implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE )
+    @EmbeddedId
+    private NotePK id;
 
-    private int id;
     private Double note;
+
     @ManyToOne
+    @MapsId("idSeanceSimulateur")
+    @JoinColumn(name ="idSeanceSimulateur",referencedColumnName ="id",insertable = false,updatable = false)
     private SeanceSimulateur seanceSimulateur;
+
+    @ManyToOne
+    @MapsId("idCompetence")
+    @JoinColumn(name ="idCompetence",referencedColumnName ="id",insertable = false,updatable = false)
+    private Competence competence;
+
+
+    public NotePK getId() {
+        return id;
+    }
+
+    public void setId(NotePK id) {
+        this.id = id;
+    }
 
     public SeanceSimulateur getSeanceSimulateur() {
         return seanceSimulateur;
@@ -21,12 +39,12 @@ public class Note implements Serializable {
         this.seanceSimulateur = seanceSimulateur;
     }
 
-    public int getId() {
-        return id;
+    public Competence getCompetence() {
+        return competence;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCompetence(Competence competence) {
+        this.competence = competence;
     }
 
     public Double getNote() {

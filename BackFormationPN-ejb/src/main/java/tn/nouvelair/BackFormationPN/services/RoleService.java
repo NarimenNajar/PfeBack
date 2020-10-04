@@ -80,4 +80,10 @@ public class RoleService implements RoleServiceRemote {
         return fonctionnalites;
     }
 
+    @Override
+    public Role getRoleById(int idRole){
+        return em.find(Role.class, idRole);
+
+    }
+
 }

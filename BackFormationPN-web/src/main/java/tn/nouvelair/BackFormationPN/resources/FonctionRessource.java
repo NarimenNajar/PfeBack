@@ -56,4 +56,13 @@ public class FonctionRessource {
         Response.status(Response.Status.CREATED).entity(" Modified").build();
         return Response.ok(fonction).build();
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getFonctionById (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getFonctionById(id)).build() ;
+    }
 }

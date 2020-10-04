@@ -11,4 +11,5 @@ public interface FonctionnaliteServiceRemote {
     public void UpdateFonctionnalite(Fonctionnalite fonctionnalite);
     List<Fonctionnalite> GetFonctionnalites();
     public void deleteFonctionnalite(int idFonctionnalite);
+    public Fonctionnalite getFonctionnaliteById(int idFonctionnalite);
 }

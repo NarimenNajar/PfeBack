@@ -1,6 +1,7 @@
 package tn.nouvelair.BackFormationPN.services;
 
 import tn.nouvelair.BackFormationPN.Interfaces.TypeSimulateurServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.TypeFormation;
 import tn.nouvelair.BackFormationPN.entities.TypeSimulateur;
 
 
@@ -46,5 +47,11 @@ public class TypeSimulateurService implements TypeSimulateurServiceRemote {
     @Override
     public void deleteTypeSimulateur(int idTypeSimulateur) {
         em.remove(em.find(TypeSimulateur.class, idTypeSimulateur));
+    }
+
+    @Override
+    public TypeSimulateur getTypeSimulateurById(int idTypeSimulateur){
+        return em.find(TypeSimulateur.class, idTypeSimulateur);
+
     }
 }

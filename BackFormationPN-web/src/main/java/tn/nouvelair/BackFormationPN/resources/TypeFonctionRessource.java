@@ -53,7 +53,17 @@ public class TypeFonctionRessource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdateTypeFonction(@PathParam (value = "id") int id,TypeFonction typeFonction) {
         metier.UpdateTypeFonction(typeFonction);
-        Response.status(Status.CREATED).entity(" Modified").build();
+        Response.status(Status.CREATED).entity(typeFonction).build();
         return Response.ok(typeFonction).build();
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getTypeFonctionById (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getTypeFonctionById(id)).build() ;
+    }
+
 }

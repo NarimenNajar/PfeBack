@@ -11,24 +11,24 @@ import javax.persistence.ManyToOne;
 public class Instruction implements Serializable{
 
     @EmbeddedId
-    private InstructionPK id;
+    private InstructionPK id= new InstructionPK();
     private int valide;
-    private Date DateEch;
-    private Date DateDebutToler;
-    private Date DateFinToler;
-    private String Position;
+    private Date dateEch;
+    private Date dateDebutToler;
+    private Date dateFinToler;
+    private String position;
     private boolean echeance;
 
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
     @MapsId("idUtilisateur")
-    @JoinColumn(name ="idUtilisateur",referencedColumnName ="id",insertable = false,updatable = false)
+    @JoinColumn(name ="idUtilisateur",referencedColumnName ="id",insertable = true,updatable = true)
     private Utilisateur utilisateur;
 
 
     @ManyToOne
     @MapsId("idActiviteFormation")
-    @JoinColumn(name = "idActForm",referencedColumnName = "id",insertable = false,updatable = false)
+    @JoinColumn(name = "idActiviteFormation",referencedColumnName = "id",insertable = true,updatable = true)
     private ActiviteFormation activiteFormation;
 
     public Instruction() {
@@ -67,35 +67,35 @@ public class Instruction implements Serializable{
     }
 
     public Date getDateEch() {
-        return DateEch;
+        return dateEch;
     }
 
     public void setDateEch(Date dateEch) {
-        DateEch = dateEch;
+        this.dateEch = dateEch;
     }
 
     public Date getDateDebutToler() {
-        return DateDebutToler;
+        return dateDebutToler;
     }
 
     public void setDateDebutToler(Date dateDebutToler) {
-        DateDebutToler = dateDebutToler;
+        this.dateDebutToler = dateDebutToler;
     }
 
     public Date getDateFinToler() {
-        return DateFinToler;
+        return dateFinToler;
     }
 
     public void setDateFinToler(Date dateFinToler) {
-        DateFinToler = dateFinToler;
+        this.dateFinToler = dateFinToler;
     }
 
     public String getPosition() {
-        return Position;
+        return position;
     }
 
     public void setPosition(String position) {
-        Position = position;
+        this.position = position;
     }
 
     public boolean isEcheance() {

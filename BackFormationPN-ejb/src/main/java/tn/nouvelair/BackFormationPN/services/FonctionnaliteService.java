@@ -1,6 +1,8 @@
 package tn.nouvelair.BackFormationPN.services;
 import tn.nouvelair.BackFormationPN.Interfaces.FonctionnaliteServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.Fonctionnalite;
+import tn.nouvelair.BackFormationPN.entities.Utilisateur;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -47,4 +49,12 @@ public class FonctionnaliteService implements FonctionnaliteServiceRemote {
         em.remove(em.find(Fonctionnalite.class, idFonctionnalite));
 
     }
+
+    @Override
+    public Fonctionnalite getFonctionnaliteById(int idFonctionnalite){
+        return em.find(Fonctionnalite.class, idFonctionnalite);
+
+    }
+
+
 }

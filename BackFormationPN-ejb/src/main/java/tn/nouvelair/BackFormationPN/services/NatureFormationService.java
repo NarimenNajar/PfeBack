@@ -1,5 +1,6 @@
 package tn.nouvelair.BackFormationPN.services;
 import tn.nouvelair.BackFormationPN.Interfaces.NatureFormationServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.NatureFormation;
 
 import javax.ejb.LocalBean;
@@ -43,5 +44,11 @@ public class NatureFormationService implements NatureFormationServiceRemote {
     @Override
     public void deleteNatureFormation(int idnatureFormation) {
         em.remove(em.find(NatureFormation.class, idnatureFormation));
+    }
+
+    @Override
+    public NatureFormation getNatureFormationById(int idNatureFormation){
+        return em.find(NatureFormation.class, idNatureFormation);
+
     }
 }

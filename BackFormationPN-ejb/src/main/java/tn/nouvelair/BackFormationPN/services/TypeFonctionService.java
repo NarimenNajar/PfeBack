@@ -1,5 +1,6 @@
 package tn.nouvelair.BackFormationPN.services;
 import tn.nouvelair.BackFormationPN.Interfaces.TypeFonctionServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.Categorie;
 import tn.nouvelair.BackFormationPN.entities.TypeFonction;
 
 import javax.ejb.LocalBean;
@@ -45,5 +46,9 @@ public class TypeFonctionService implements TypeFonctionServiceRemote {
         em.remove(em.find(TypeFonction.class, idtypeFonction));
     }
 
+    @Override
+    public TypeFonction getTypeFonctionById(int idTypeFonction){
+        return em.find(TypeFonction.class, idTypeFonction);
 
+    }
 }

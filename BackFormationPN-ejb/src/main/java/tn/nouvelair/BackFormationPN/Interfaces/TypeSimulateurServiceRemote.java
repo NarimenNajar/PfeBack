@@ -12,4 +12,5 @@ public interface TypeSimulateurServiceRemote {
     public void UpdateTypeSimulateur(TypeSimulateur typeSimulateur);
     List<TypeSimulateur> GetTypeSimulateurs();
     public void deleteTypeSimulateur(int idTypeSimulateur);
+    public TypeSimulateur getTypeSimulateurById(int idTypeSimulateur);
 }

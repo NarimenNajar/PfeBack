@@ -58,4 +58,12 @@ public class NatureFormationRessource {
         return Response.ok(natureFormation).build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getNatureFormationyId (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getNatureFormationById(id)).build() ;
+    }
 }

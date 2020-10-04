@@ -9,7 +9,6 @@ import java.util.Objects;
 import javax.persistence.*;
 import javax.persistence.ManyToOne;
 
-@JsonIgnoreProperties(allowSetters = true, value = {"utilisateur"})
 @Entity
 public class Fonction implements Serializable {
 

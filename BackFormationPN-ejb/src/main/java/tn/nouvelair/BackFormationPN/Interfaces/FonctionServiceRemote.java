@@ -11,4 +11,6 @@ public interface FonctionServiceRemote {
     public void UpdateFonction(Fonction fonction);
     List<Fonction> GetFonctions();
     public void deleteFonction(int idFonction);
+    public Fonction getFonctionById(int idFonction);
+
 }

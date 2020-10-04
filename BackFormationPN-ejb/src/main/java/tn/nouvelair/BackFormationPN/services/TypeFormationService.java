@@ -1,6 +1,7 @@
 package tn.nouvelair.BackFormationPN.services;
 
 import tn.nouvelair.BackFormationPN.Interfaces.TypeFormationServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.TypeFonction;
 import tn.nouvelair.BackFormationPN.entities.TypeFormation;
 
 import javax.ejb.LocalBean;
@@ -44,5 +45,11 @@ public class TypeFormationService implements TypeFormationServiceRemote {
     @Override
     public void deleteTypeFormation(int idtypeFormation) {
         em.remove(em.find(TypeFormation.class, idtypeFormation));
+    }
+
+    @Override
+    public TypeFormation getTypeFormationById(int idTypeFormation){
+        return em.find(TypeFormation.class, idTypeFormation);
+
     }
 }

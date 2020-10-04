@@ -13,4 +13,5 @@ public interface RoleServiceRemote {
     List<Role> GetRoles();
     public void deleteRole(int idRole);
     public List<Fonctionnalite> GetFonctionnalites(int idRole);
+    public Role getRoleById(int idRole);
 }

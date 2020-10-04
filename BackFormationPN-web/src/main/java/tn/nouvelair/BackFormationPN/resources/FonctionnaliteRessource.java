@@ -54,7 +54,16 @@ public class FonctionnaliteRessource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdateFonctionnalite(@PathParam (value = "id") int id,Fonctionnalite fonctionnalite) {
         metier.UpdateFonctionnalite(fonctionnalite);
-        Response.status(Response.Status.CREATED).entity(" Modified").build();
+        Response.status(Response.Status.CREATED).entity(fonctionnalite).build();
         return Response.ok(fonctionnalite).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getFonctionnaliteById (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getFonctionnaliteById(id)).build() ;
     }
 }

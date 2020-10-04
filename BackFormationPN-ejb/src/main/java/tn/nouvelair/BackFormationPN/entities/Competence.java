@@ -2,9 +2,10 @@ package tn.nouvelair.BackFormationPN.entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
-@JsonIgnoreProperties(allowSetters = true, value = {"syllabus"})
+@JsonIgnoreProperties(allowSetters = true, value = {"syllabus","notes"})
 @Entity
 public class Competence implements Serializable {
     @Id
@@ -15,6 +16,9 @@ public class Competence implements Serializable {
 
     @ManyToOne(fetch=FetchType.LAZY)
     private Syllabus syllabus;
+
+    @OneToMany(mappedBy = "competence")
+    private List<Note> notes;
 
     public Syllabus getSyllabus() {
         return syllabus;

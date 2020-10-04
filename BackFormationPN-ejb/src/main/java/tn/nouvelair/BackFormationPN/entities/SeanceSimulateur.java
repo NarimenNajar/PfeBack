@@ -5,11 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.util.List;
 
+@JsonIgnoreProperties(allowSetters = true, value = {"simulateur","levels", "notes"})
 
 @Entity
 public class SeanceSimulateur implements Serializable{

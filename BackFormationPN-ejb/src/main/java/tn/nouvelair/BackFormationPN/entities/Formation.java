@@ -12,17 +12,14 @@ import javax.persistence.*;
 public class Formation extends ActiviteFormation implements Serializable {
 
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE )
-
-    private int id;
 
 
 
 
-    private String TitreFormation;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "formation")
+    private String titreFormation;
+
+    @OneToMany(fetch=FetchType.EAGER,mappedBy = "formation")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<SeanceFormation> seanceFormations;
@@ -44,13 +41,12 @@ public class Formation extends ActiviteFormation implements Serializable {
     }*/
 
 
-
     public String getTitreFormation() {
-        return TitreFormation;
+        return titreFormation;
     }
 
     public void setTitreFormation(String titreFormation) {
-        TitreFormation = titreFormation;
+        this.titreFormation = titreFormation;
     }
 
     public List<SeanceFormation> getSeanceFormations() {
@@ -61,13 +57,7 @@ public class Formation extends ActiviteFormation implements Serializable {
         this.seanceFormations = seanceFormations;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public Formation() {
     }

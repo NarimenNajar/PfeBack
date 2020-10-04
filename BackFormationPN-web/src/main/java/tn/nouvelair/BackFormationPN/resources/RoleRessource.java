@@ -53,7 +53,7 @@ public class RoleRessource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdateRole(@PathParam (value = "id") int id,Role role) {
         metier.UpdateRole(role);
-        Response.status(Status.CREATED).entity(" Modified").build();
+        Response.status(Status.CREATED).entity(role).build();
         return Response.ok(role).build();
     }
 
@@ -64,4 +64,14 @@ public class RoleRessource {
 
         return Response.ok(metier.GetFonctionnalites(idRole)).build();
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/detail/{id}")
+    public Response getRoleById (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getRoleById(id)).build() ;
+    }
+
 }

@@ -11,4 +11,5 @@ public interface NatureFormationServiceRemote {
     public void UpdateNatureFormation(NatureFormation natureFormation);
     List<NatureFormation> GetNatureFormations();
     public void deleteNatureFormation(int idNatureFormation);
+    public NatureFormation getNatureFormationById(int idNatureFormation);
 }

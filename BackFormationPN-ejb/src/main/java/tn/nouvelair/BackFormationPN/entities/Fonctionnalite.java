@@ -11,14 +11,14 @@ public class Fonctionnalite implements Serializable{
     private String fonctionnalite;
 
     @Column(unique=true)
-    private String codeFonctionnalité;
+    private String codeFonctionnalite;
 
-    public String getCodeFonctionnalité() {
-        return codeFonctionnalité;
+    public String getCodeFonctionnalite() {
+        return codeFonctionnalite;
     }
 
-    public void setCodeFonctionnalité(String codeFonctionnalité) {
-        this.codeFonctionnalité = codeFonctionnalité;
+    public void setCodeFonctionnalite(String codeFonctionnalite) {
+        this.codeFonctionnalite = codeFonctionnalite;
     }
 
     public int getId() {

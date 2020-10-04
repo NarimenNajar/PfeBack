@@ -8,42 +8,30 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("1")
+
 public class Simulateur extends ActiviteFormation implements Serializable{
 
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE )
-    private int id;
-    private int Periode;
+    private int periode;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "simulateur")
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "simulateur")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<SeanceSimulateur> seanceSimulateurs;
 
 
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 
 
     public Simulateur() {
     }
 
-
-
     public int getPeriode() {
-        return Periode;
+        return periode;
     }
 
     public void setPeriode(int periode) {
-        Periode = periode;
+        this.periode = periode;
     }
 
     public List<SeanceSimulateur> getSeanceSimulateurs() {
