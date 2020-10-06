@@ -21,6 +21,7 @@ public interface ActiviteFormationServiceRemote {
     List<Simulateur> GetSimulateurs();
     public void deleteSimulateur(int idSimulateur);
     public Simulateur getSimulateurById(int idSimulateur);
+    public void deleteSeanceSimulateur(int idSeanceSimulateur);
     public List<Formation> GetFormationsPNT();
     public List<Formation> GetFormationsPNC();
     public void AjouterFormationPNC(Formation formation);
@@ -28,4 +29,5 @@ public interface ActiviteFormationServiceRemote {
     public List<Instruction> SelectInstructionsByActiviteFormation(Integer idFormation);
     public void deleteInstructionByActiviteAndUser(int idActiviteFormation, int idUser);
     public void deleteSeanceFormation(int idSeanceFormation);
+    public void AjouterInstruction(Instruction instruction, int idActiviteFormation, int idUtilisateur);
 }

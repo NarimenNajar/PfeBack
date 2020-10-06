@@ -14,7 +14,7 @@ public class Simulateur extends ActiviteFormation implements Serializable{
 
     private int periode;
 
-    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy = "simulateur")
+    @OneToMany(fetch=FetchType.EAGER,mappedBy = "simulateur")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<SeanceSimulateur> seanceSimulateurs;

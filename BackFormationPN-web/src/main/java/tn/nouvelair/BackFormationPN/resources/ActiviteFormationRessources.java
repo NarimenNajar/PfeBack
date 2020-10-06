@@ -1,6 +1,7 @@
 package tn.nouvelair.BackFormationPN.resources;
 import tn.nouvelair.BackFormationPN.Interfaces.ActiviteFormationServiceRemote;
 import tn.nouvelair.BackFormationPN.entities.Formation;
+import tn.nouvelair.BackFormationPN.entities.Instruction;
 import tn.nouvelair.BackFormationPN.entities.Simulateur;
 
 import javax.ejb.EJB;
@@ -196,5 +197,26 @@ public class ActiviteFormationRessources {
     {
 
         return Response.ok(metier.getSimulateurById(id)).build() ;
+    }
+
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/simulateur/delete/seanceSimulateur/{idSeanceSimulateur}")
+    public Response deleteSeanceSimulateur (@PathParam (value = "idSeanceSimulateur") int idSeanceSimulateur)
+    {
+        metier.deleteSeanceSimulateur(idSeanceSimulateur);
+        return Response.status(Status.OK).build() ;
+    }
+
+
+    @POST
+    @Path("/formation/instruction/add/{idActiviteFormation}/{idUtilisateur}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response AjouterInstruction(Instruction instruction, @PathParam (value = "idActiviteFormation") int idActiviteFormation, @PathParam (value = "idUtilisateur") int idUtilisateur) {
+        metier.AjouterInstruction(instruction, idActiviteFormation, idUtilisateur);
+
+        return Response.status(Response.Status.CREATED).entity(instruction).build();
+
     }
 }

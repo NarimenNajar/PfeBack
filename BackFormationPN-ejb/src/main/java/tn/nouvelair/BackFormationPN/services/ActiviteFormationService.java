@@ -24,12 +24,36 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
 
     @Override
     public void AjouterSimulateur(Simulateur simulateur) {
+        int size = simulateur.getSeanceSimulateurs().size();
+        int n = 0 ;
+        simulateur.setNombreJours(size);
+        simulateur.setTypeActivite(n);
         em.persist(simulateur);
         simulateur.getSeanceSimulateurs().forEach((seanceSimulateur) ->
         {   seanceSimulateur.setSimulateur(simulateur);
             em.persist(seanceSimulateur);
         });
         System.out.println("simulateur ");
+        simulateur.getInstructions().forEach((instruction) ->
+        {
+            System.out.println(instruction.getUtilisateur().getId());
+            Utilisateur user = em.find(Utilisateur.class,instruction.getUtilisateur().getId());
+            instruction.setUtilisateur(user);
+            System.out.println(instruction.getUtilisateur().getId());
+            instruction.setActiviteFormation(simulateur);
+
+            System.out.println(instruction.getUtilisateur().getId());
+            System.out.println(instruction.getActiviteFormation().getId());
+            System.out.println(instruction.getPosition());
+            System.out.println("avant perst");
+
+            em.persist(instruction);
+            System.out.println("aaaaa");
+
+            System.out.println("cccc");
+
+        });
+        System.out.println("instruction ");
     }
 
     @Override
@@ -47,7 +71,16 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
 
     @Override
     public void UpdateSimulateur(Simulateur simulateur) {
+        int size = simulateur.getSeanceSimulateurs().size();
+        simulateur.setNombreJours(size);
+        simulateur.getSeanceSimulateurs().forEach((seanceFormation) ->
+        {seanceFormation.setSimulateur(simulateur);
+        });
+        System.out.println("before merge simul");
         em.merge(simulateur);
+        System.out.println("after merge simul");
+
+
     }
 
     @Override
@@ -58,6 +91,14 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
     @Override
     public Simulateur getSimulateurById(int idSimulateur){
         return em.find(Simulateur.class, idSimulateur);
+
+    }
+
+    @Override
+    public void deleteSeanceSimulateur(int idSeanceSimulateur) {
+        em.remove(em.find(SeanceSimulateur.class, idSeanceSimulateur));
+        System.out.println(idSeanceSimulateur);
+        System.out.println("removed");
 
     }
 
@@ -235,8 +276,11 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         formation.getSeanceFormations().forEach((seanceFormation) ->
         {seanceFormation.setFormation(formation);
         });
+        System.out.println("before merge formation");
         em.merge(formation);
-        formation.getInstructions().forEach((instruction) ->
+        System.out.println("after merge formation");
+
+        /*formation.getInstructions().forEach((instruction) ->
         {
             System.out.println(instruction.getUtilisateur().getId());
             Utilisateur user = em.find(Utilisateur.class,instruction.getUtilisateur().getId());
@@ -249,7 +293,7 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
             System.out.println(instruction.getPosition());
             System.out.println("avant perst");
 
-            em.persist(instruction);});
+            em.persist(instruction);});*/
     }
 
     @Override
@@ -301,6 +345,30 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         System.out.println(idSeanceFormation);
         System.out.println("removed");
 
+    }
+
+    @Override
+    public void AjouterInstruction(Instruction instruction, int idActiviteFormation, int idUtilisateur) {
+        System.out.println(idUtilisateur);
+        instruction.getId().setIdUtilisateur(idUtilisateur);
+        System.out.println(instruction.getId().getIdUtilisateur());
+        System.out.println(idActiviteFormation);
+       instruction.getId().setIdActiviteFormation(idActiviteFormation);
+        System.out.println(instruction.getId().getIdActiviteFormation());
+        Utilisateur user = em.find(Utilisateur.class, idUtilisateur);
+        instruction.setUtilisateur(user);
+        System.out.println(instruction.getUtilisateur().getId());
+        ActiviteFormation activiteFormation = em.find(ActiviteFormation.class, idActiviteFormation);
+        instruction.setActiviteFormation(activiteFormation);
+        System.out.println(instruction.getActiviteFormation().getId());
+        em.persist(instruction);
+        System.out.println("after persist");
+        instruction.getUtilisateur().getInstructions().add(instruction);
+        System.out.println("after add inst utilisateur");
+        instruction.getActiviteFormation().getInstructions().add(instruction);
+        System.out.println("after add inst act form");
+
+        System.out.println("ajouter instruction ");
     }
 
 
