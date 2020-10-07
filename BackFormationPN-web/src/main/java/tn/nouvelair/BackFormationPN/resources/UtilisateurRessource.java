@@ -91,5 +91,14 @@ public class UtilisateurRessource {
         return Response.ok(metier.getUtilisateurById(id)).build() ;
     }
 
+    @GET
+    @Path("/instructions/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getInstructionsByUser(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectInstructionsByUser(id)).build();
+    }
+
 
 }

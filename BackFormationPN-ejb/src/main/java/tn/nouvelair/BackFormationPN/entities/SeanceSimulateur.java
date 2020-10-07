@@ -30,6 +30,8 @@ public class SeanceSimulateur implements Serializable{
 
     private String commentaire;
     private String resultFinal;
+    private int validationInstructeur;
+    private int validationTrainee;
 
     @OneToMany(mappedBy = "seanceSimulateur")
     private List<Level> levels;
@@ -50,6 +52,21 @@ public class SeanceSimulateur implements Serializable{
     public SeanceSimulateur() {
     }
 
+    public int getValidationInstructeur() {
+        return validationInstructeur;
+    }
+
+    public void setValidationInstructeur(int validationInstructeur) {
+        this.validationInstructeur = validationInstructeur;
+    }
+
+    public int getValidationTrainee() {
+        return validationTrainee;
+    }
+
+    public void setValidationTrainee(int validationTrainee) {
+        this.validationTrainee = validationTrainee;
+    }
 
     public List<Level> getLevels() {
         return levels;

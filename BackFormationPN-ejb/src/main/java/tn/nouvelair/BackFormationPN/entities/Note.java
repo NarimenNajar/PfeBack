@@ -8,18 +8,18 @@ import javax.persistence.*;
 public class Note implements Serializable {
 
     @EmbeddedId
-    private NotePK id;
+    private NotePK id = new NotePK();
 
     private Double note;
 
     @ManyToOne
     @MapsId("idSeanceSimulateur")
-    @JoinColumn(name ="idSeanceSimulateur",referencedColumnName ="id",insertable = false,updatable = false)
+    @JoinColumn(name ="idSeanceSimulateur",referencedColumnName ="id",insertable = true,updatable = true)
     private SeanceSimulateur seanceSimulateur;
 
     @ManyToOne
     @MapsId("idCompetence")
-    @JoinColumn(name ="idCompetence",referencedColumnName ="id",insertable = false,updatable = false)
+    @JoinColumn(name ="idCompetence",referencedColumnName ="id",insertable = true,updatable = true)
     private Competence competence;
 
 

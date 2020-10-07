@@ -219,4 +219,34 @@ public class ActiviteFormationRessources {
         return Response.status(Response.Status.CREATED).entity(instruction).build();
 
     }
+
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/simulateur/seance/detail/{id}")
+    public Response getSeanceSimulateurById (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getSeanceSimulateurById(id)).build() ;
+    }
+
+
+    @GET
+    @Path("/simulateur/notes/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getNotesBySeanceSimulateur(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectNotesBySeanceSimulateur(id)).build();
+    }
+
+    @GET
+    @Path("/simulateur/levels/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getLevelsBySeanceSimulateur(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectLevelsBySeanceSimulateur(id)).build();
+    }
 }

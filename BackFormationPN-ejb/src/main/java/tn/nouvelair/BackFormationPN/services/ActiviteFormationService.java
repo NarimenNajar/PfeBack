@@ -32,6 +32,32 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         simulateur.getSeanceSimulateurs().forEach((seanceSimulateur) ->
         {   seanceSimulateur.setSimulateur(simulateur);
             em.persist(seanceSimulateur);
+            System.out.println(seanceSimulateur.getId());
+            Syllabus syllabus= seanceSimulateur.getSyllabus();
+            System.out.println(seanceSimulateur.getSyllabus().getId());
+            syllabus.getCompetences().forEach((competence) -> {
+                Note note= new Note();
+                System.out.println("note");
+                SeanceSimulateur seanceSimulateur1 = em.find(SeanceSimulateur.class, seanceSimulateur.getId());
+                note.setSeanceSimulateur(seanceSimulateur1);
+                System.out.println(note.getSeanceSimulateur().getId());
+                System.out.println(competence.getId());
+                Competence competence1 = em.find(Competence.class, competence.getId());
+                note.setCompetence(competence1);
+
+                System.out.println("avant persist");
+                em.persist(note);
+                System.out.println("after persist");
+
+            });
+            syllabus.getParties().forEach((partie) -> partie.getTaches().forEach((tache) -> {
+                Level level = new Level();
+                SeanceSimulateur seanceSimulateur1 = em.find(SeanceSimulateur.class, seanceSimulateur.getId());
+                level.setSeanceSimulateur(seanceSimulateur1);
+                Tache tache1 = em.find(Tache.class, tache.getId());
+                level.setTache(tache1);
+                em.persist(level);
+            }));
         });
         System.out.println("simulateur ");
         simulateur.getInstructions().forEach((instruction) ->
@@ -276,24 +302,8 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         formation.getSeanceFormations().forEach((seanceFormation) ->
         {seanceFormation.setFormation(formation);
         });
-        System.out.println("before merge formation");
         em.merge(formation);
-        System.out.println("after merge formation");
 
-        /*formation.getInstructions().forEach((instruction) ->
-        {
-            System.out.println(instruction.getUtilisateur().getId());
-            Utilisateur user = em.find(Utilisateur.class,instruction.getUtilisateur().getId());
-            instruction.setUtilisateur(user);
-            System.out.println(instruction.getUtilisateur().getId());
-            instruction.setActiviteFormation(formation);
-
-            System.out.println(instruction.getUtilisateur().getId());
-            System.out.println(instruction.getActiviteFormation().getId());
-            System.out.println(instruction.getPosition());
-            System.out.println("avant perst");
-
-            em.persist(instruction);});*/
     }
 
     @Override
@@ -304,6 +314,13 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
     @Override
     public Formation getFormationById(int idFormation){
         return em.find(Formation.class, idFormation);
+
+    }
+
+
+    @Override
+    public SeanceSimulateur getSeanceSimulateurById(int idSeanceSimulateur){
+        return em.find(SeanceSimulateur.class, idSeanceSimulateur);
 
     }
 
@@ -342,34 +359,67 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
     @Override
     public void deleteSeanceFormation(int idSeanceFormation) {
         em.remove(em.find(SeanceFormation.class, idSeanceFormation));
-        System.out.println(idSeanceFormation);
-        System.out.println("removed");
+
 
     }
 
     @Override
     public void AjouterInstruction(Instruction instruction, int idActiviteFormation, int idUtilisateur) {
-        System.out.println(idUtilisateur);
         instruction.getId().setIdUtilisateur(idUtilisateur);
-        System.out.println(instruction.getId().getIdUtilisateur());
-        System.out.println(idActiviteFormation);
+
        instruction.getId().setIdActiviteFormation(idActiviteFormation);
-        System.out.println(instruction.getId().getIdActiviteFormation());
         Utilisateur user = em.find(Utilisateur.class, idUtilisateur);
         instruction.setUtilisateur(user);
-        System.out.println(instruction.getUtilisateur().getId());
         ActiviteFormation activiteFormation = em.find(ActiviteFormation.class, idActiviteFormation);
         instruction.setActiviteFormation(activiteFormation);
-        System.out.println(instruction.getActiviteFormation().getId());
         em.persist(instruction);
-        System.out.println("after persist");
         instruction.getUtilisateur().getInstructions().add(instruction);
-        System.out.println("after add inst utilisateur");
         instruction.getActiviteFormation().getInstructions().add(instruction);
-        System.out.println("after add inst act form");
 
-        System.out.println("ajouter instruction ");
     }
 
+
+    // mezzelet ne9sa
+    @Override
+    public void ValiderInstructeurSimuulateur(SeanceSimulateur seanceSimulateur)
+    {
+        em.merge(seanceSimulateur);
+        seanceSimulateur.getNotes().forEach((note) ->
+        {
+            note.setSeanceSimulateur(seanceSimulateur);
+        });
+
+    }
+
+
+    @Override
+    public List<Note> SelectNotesBySeanceSimulateur(Integer idSeanceSimulateur) {
+
+        List<Note> notes=null;
+        TypedQuery<Note> query = em.createQuery("Select e from Note e where e.seanceSimulateur="+idSeanceSimulateur
+                , Note.class);
+        try {
+            notes = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return notes;
+
+    }
+
+    @Override
+    public List<Level> SelectLevelsBySeanceSimulateur(Integer idSeanceSimulateur) {
+
+        List<Level> levels=null;
+        TypedQuery<Level> query = em.createQuery("Select e from Level e where e.seanceSimulateur="+idSeanceSimulateur
+                , Level.class);
+        try {
+            levels = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return levels;
+
+    }
 
 }

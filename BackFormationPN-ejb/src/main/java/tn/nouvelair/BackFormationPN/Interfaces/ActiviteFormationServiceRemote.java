@@ -1,8 +1,5 @@
 package tn.nouvelair.BackFormationPN.Interfaces;
-import tn.nouvelair.BackFormationPN.entities.ActiviteFormation;
-import tn.nouvelair.BackFormationPN.entities.Formation;
-import tn.nouvelair.BackFormationPN.entities.Instruction;
-import tn.nouvelair.BackFormationPN.entities.Simulateur;
+import tn.nouvelair.BackFormationPN.entities.*;
 
 
 import javax.ejb.Remote;
@@ -30,4 +27,9 @@ public interface ActiviteFormationServiceRemote {
     public void deleteInstructionByActiviteAndUser(int idActiviteFormation, int idUser);
     public void deleteSeanceFormation(int idSeanceFormation);
     public void AjouterInstruction(Instruction instruction, int idActiviteFormation, int idUtilisateur);
+    public void ValiderInstructeurSimuulateur(SeanceSimulateur seanceSimulateur);
+    public SeanceSimulateur getSeanceSimulateurById(int idSeanceSimulateur);
+    public List<Level> SelectLevelsBySeanceSimulateur(Integer idSeanceSimulateur);
+    public List<Note> SelectNotesBySeanceSimulateur(Integer idSeanceSimulateur);
+
 }

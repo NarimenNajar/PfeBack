@@ -1,5 +1,6 @@
 package tn.nouvelair.BackFormationPN.Interfaces;
 import tn.nouvelair.BackFormationPN.entities.Categorie;
+import tn.nouvelair.BackFormationPN.entities.Instruction;
 import tn.nouvelair.BackFormationPN.entities.Utilisateur;
 
 import javax.ejb.Remote;
@@ -19,6 +20,8 @@ public interface UtilisateurServiceRemote {
     public List<Utilisateur> SelectUsersByRole(Integer idRole);
     public void deleteUser(int idUser);
     public Utilisateur getUtilisateurById(int idUtilisateur);
+    public List<Instruction> SelectInstructionsByUser(Integer idUtilisateur);
+
 
 
 }

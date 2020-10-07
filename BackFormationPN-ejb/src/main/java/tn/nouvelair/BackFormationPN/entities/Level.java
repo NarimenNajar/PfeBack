@@ -6,18 +6,18 @@ import javax.persistence.*;
 public class Level implements Serializable {
 
     @EmbeddedId
-    private LevelPK id;
+    private LevelPK id = new LevelPK();
 
     private String level;
 
     @ManyToOne
     @MapsId("idSeanceSimulateur")
-    @JoinColumn(name ="idSeanceSimulateur",referencedColumnName ="id",insertable = false,updatable = false)
+    @JoinColumn(name ="idSeanceSimulateur",referencedColumnName ="id",insertable = true,updatable = true)
     private SeanceSimulateur seanceSimulateur;
 
     @ManyToOne
     @MapsId("idTache")
-    @JoinColumn(name ="idTache",referencedColumnName ="id",insertable = false,updatable = false)
+    @JoinColumn(name ="idTache",referencedColumnName ="id",insertable = true,updatable = true)
     private Tache tache;
 
     public SeanceSimulateur getSeanceSimulateur() {

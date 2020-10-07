@@ -32,6 +32,14 @@ public class Competence implements Serializable {
 
     }
 
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
     public String getCompetence() {
         return competence;
     }

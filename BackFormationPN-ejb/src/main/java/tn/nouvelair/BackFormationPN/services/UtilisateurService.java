@@ -1,6 +1,7 @@
 package tn.nouvelair.BackFormationPN.services;
 
 import tn.nouvelair.BackFormationPN.Interfaces.UtilisateurServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.Instruction;
 import tn.nouvelair.BackFormationPN.entities.Syllabus;
 import tn.nouvelair.BackFormationPN.entities.Utilisateur;
 import java.util.logging.Logger;
@@ -108,4 +109,18 @@ public class UtilisateurService implements UtilisateurServiceRemote {
     }
 
 
+    @Override
+    public List<Instruction> SelectInstructionsByUser(Integer idUtilisateur) {
+
+        List<Instruction> instructions=null;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.utilisateur="+idUtilisateur
+                , Instruction.class);
+        try {
+            instructions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return instructions;
+
+    }
 }
