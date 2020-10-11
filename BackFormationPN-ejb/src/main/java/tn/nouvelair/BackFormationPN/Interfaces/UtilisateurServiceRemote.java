@@ -21,7 +21,9 @@ public interface UtilisateurServiceRemote {
     public void deleteUser(int idUser);
     public Utilisateur getUtilisateurById(int idUtilisateur);
     public List<Instruction> SelectInstructionsByUser(Integer idUtilisateur);
-
+    public List<Instruction> SelectInstructionsByInstructor(Integer idUtilisateur);
+    public List<Instruction> SelectInstructionsByTrainee(Integer idUtilisateur);
+    public List<Instruction> SelectArchiveInstructions(Integer idUtilisateur);
 
 
 }

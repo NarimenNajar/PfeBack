@@ -99,6 +99,34 @@ public class UtilisateurRessource {
 
         return Response.ok(metier.SelectInstructionsByUser(id)).build();
     }
+    @GET
+    @Path("/instructions/archive/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getArchiveInstructionByUser(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectArchiveInstructions(id)).build();
+    }
+
+
+    @GET
+    @Path("/instructions/instructor/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getInstructionsByInstructor(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectInstructionsByInstructor(id)).build();
+    }
+
+
+    @GET
+    @Path("/instructions/trainee/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getInstructionsByTrainee(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectInstructionsByTrainee(id)).build();
+    }
 
 
 }

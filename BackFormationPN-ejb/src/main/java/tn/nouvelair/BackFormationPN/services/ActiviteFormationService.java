@@ -340,6 +340,7 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
 
     }
 
+
     @Override
     public void deleteInstructionByActiviteAndUser(int idActiviteFormation, int idUser) {
         TypedQuery<Instruction> query = em.createQuery("Select p from Instruction p  "
