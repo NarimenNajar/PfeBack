@@ -1,5 +1,6 @@
 package tn.nouvelair.BackFormationPN.Interfaces;
 import tn.nouvelair.BackFormationPN.entities.Categorie;
+import tn.nouvelair.BackFormationPN.entities.Fonction;
 import tn.nouvelair.BackFormationPN.entities.Instruction;
 import tn.nouvelair.BackFormationPN.entities.Utilisateur;
 
@@ -24,6 +25,9 @@ public interface UtilisateurServiceRemote {
     public List<Instruction> SelectInstructionsByInstructor(Integer idUtilisateur);
     public List<Instruction> SelectInstructionsByTrainee(Integer idUtilisateur);
     public List<Instruction> SelectArchiveInstructions(Integer idUtilisateur);
+    public List<Fonction> SelectFonctionsByUser(Integer idUtilisateur);
+    public List<Fonction> SelectArchiveFonctions(Integer idUtilisateur);
+    public List<Fonction> SelectCurrentFonctions(Integer idUtilisateur);
 
 
 }

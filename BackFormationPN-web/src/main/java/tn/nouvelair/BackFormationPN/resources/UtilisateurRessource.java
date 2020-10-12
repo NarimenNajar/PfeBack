@@ -128,5 +128,30 @@ public class UtilisateurRessource {
         return Response.ok(metier.SelectInstructionsByTrainee(id)).build();
     }
 
+    @GET
+    @Path("/fonctions/all/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getFonctionsByUser(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectFonctionsByUser(id)).build();
+    }
+
+    @GET
+    @Path("/fonctions/archive/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getArchiveFonctionsByUser(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectArchiveFonctions(id)).build();
+    }
+    @GET
+    @Path("/fonctions/current/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCurrentFonctionsByUser(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectCurrentFonctions(id)).build();
+    }
 
 }

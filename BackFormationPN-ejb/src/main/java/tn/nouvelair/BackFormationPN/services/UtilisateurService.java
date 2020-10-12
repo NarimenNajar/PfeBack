@@ -1,6 +1,7 @@
 package tn.nouvelair.BackFormationPN.services;
 
 import tn.nouvelair.BackFormationPN.Interfaces.UtilisateurServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.Fonction;
 import tn.nouvelair.BackFormationPN.entities.Instruction;
 import tn.nouvelair.BackFormationPN.entities.Syllabus;
 import tn.nouvelair.BackFormationPN.entities.Utilisateur;
@@ -169,6 +170,54 @@ public class UtilisateurService implements UtilisateurServiceRemote {
 
         }
         return instructions;
+
+    }
+
+
+    @Override
+    public List<Fonction> SelectFonctionsByUser(Integer idUtilisateur) {
+
+        List<Fonction> fonctions=null;
+        TypedQuery<Fonction> query = em.createQuery("Select e from Fonction e where e.utilisateur="+idUtilisateur
+                , Fonction.class);
+        try {
+            fonctions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return fonctions;
+
+    }
+
+    @Override
+    public List<Fonction> SelectArchiveFonctions(Integer idUtilisateur) {
+
+        List<Fonction> fonctions=null;
+        TypedQuery<Fonction> query = em.createQuery("Select e from Fonction e where e.utilisateur="+idUtilisateur +"and e.dateFin < current_date "
+                , Fonction.class);
+
+        try {
+            fonctions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return fonctions;
+
+    }
+
+    @Override
+    public List<Fonction> SelectCurrentFonctions(Integer idUtilisateur) {
+
+        List<Fonction> fonctions=null;
+        TypedQuery<Fonction> query = em.createQuery("Select e from Fonction e where e.utilisateur="+idUtilisateur +"and e.dateFin >= current_date "
+                , Fonction.class);
+
+        try {
+            fonctions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return fonctions;
 
     }
 }
