@@ -153,4 +153,6 @@ public class SyllabusService implements SyllabusServiceRemote {
         return em.find(Syllabus.class, idSyllabus);
 
     }
+
+
 }

@@ -1,4 +1,5 @@
 package tn.nouvelair.BackFormationPN.entities;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class Competence implements Serializable {
     private Syllabus syllabus;
 
     @OneToMany(mappedBy = "competence")
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
     private List<Note> notes;
 
     public Syllabus getSyllabus() {

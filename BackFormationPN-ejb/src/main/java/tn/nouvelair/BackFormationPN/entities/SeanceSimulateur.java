@@ -37,7 +37,7 @@ public class SeanceSimulateur implements Serializable{
     private List<Level> levels;
 
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "seanceSimulateur")
+    @OneToMany(mappedBy = "seanceSimulateur")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Note> notes;

@@ -1,4 +1,6 @@
 package tn.nouvelair.BackFormationPN.entities;
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
@@ -8,6 +10,7 @@ public class Level implements Serializable {
     @EmbeddedId
     private LevelPK id = new LevelPK();
 
+    @JsonValue
     private String level;
 
     @ManyToOne
@@ -56,4 +59,5 @@ public class Level implements Serializable {
 
     public Level() {
     }
+
 }

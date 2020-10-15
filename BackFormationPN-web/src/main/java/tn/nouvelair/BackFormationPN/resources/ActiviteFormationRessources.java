@@ -1,8 +1,6 @@
 package tn.nouvelair.BackFormationPN.resources;
 import tn.nouvelair.BackFormationPN.Interfaces.ActiviteFormationServiceRemote;
-import tn.nouvelair.BackFormationPN.entities.Formation;
-import tn.nouvelair.BackFormationPN.entities.Instruction;
-import tn.nouvelair.BackFormationPN.entities.Simulateur;
+import tn.nouvelair.BackFormationPN.entities.*;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -249,4 +247,37 @@ public class ActiviteFormationRessources {
 
         return Response.ok(metier.SelectLevelsBySeanceSimulateur(id)).build();
     }
+
+    @POST
+    @Path("/simulateur/level/add/{idSeanceSimulateur}/{idTache}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response AjouterLevel(Level level, @PathParam (value = "idSeanceSimulateur") int idSeanceSimulateur, @PathParam (value = "idTache") int idTache) {
+        metier.AjouterLevel(level, idSeanceSimulateur, idTache);
+
+        return Response.status(Response.Status.CREATED).entity(level).build();
+
+    }
+    @POST
+    @Path("/simulateur/note/add/{idSeanceSimulateur}/{idCompetence}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response AjouterNote(Note note, @PathParam (value = "idSeanceSimulateur") int idSeanceSimulateur, @PathParam (value = "idCompetence") int idCompetence) {
+        metier.AjouterNote(note, idSeanceSimulateur, idCompetence);
+
+        return Response.status(Response.Status.CREATED).entity(note).build();
+
+    }
+
+
+    @PUT
+    @Path("/simulateur/validation/instructor/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ValiderInstructeurSimuulateur(@PathParam (value = "id") int id, SeanceSimulateur seanceSimulateur) {
+        metier.ValiderInstructeurSimuulateur(seanceSimulateur);
+        Response.status(Status.CREATED).entity(" Modified").build();
+        return Response.ok(seanceSimulateur).build();
+    }
+
 }

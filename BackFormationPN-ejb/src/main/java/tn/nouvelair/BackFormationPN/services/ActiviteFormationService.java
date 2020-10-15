@@ -32,7 +32,7 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         simulateur.getSeanceSimulateurs().forEach((seanceSimulateur) ->
         {   seanceSimulateur.setSimulateur(simulateur);
             em.persist(seanceSimulateur);
-            System.out.println(seanceSimulateur.getId());
+           /* System.out.println(seanceSimulateur.getId());
             Syllabus syllabus= seanceSimulateur.getSyllabus();
             System.out.println(seanceSimulateur.getSyllabus().getId());
             syllabus.getCompetences().forEach((competence) -> {
@@ -49,15 +49,15 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
                 em.persist(note);
                 System.out.println("after persist");
 
-            });
-            syllabus.getParties().forEach((partie) -> partie.getTaches().forEach((tache) -> {
+            });*/
+           /* syllabus.getParties().forEach((partie) -> partie.getTaches().forEach((tache) -> {
                 Level level = new Level();
                 SeanceSimulateur seanceSimulateur1 = em.find(SeanceSimulateur.class, seanceSimulateur.getId());
                 level.setSeanceSimulateur(seanceSimulateur1);
                 Tache tache1 = em.find(Tache.class, tache.getId());
                 level.setTache(tache1);
                 em.persist(level);
-            }));
+            }));*/
         });
         System.out.println("simulateur ");
         simulateur.getInstructions().forEach((instruction) ->
@@ -94,6 +94,7 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         }
         return simulateurs;
     }
+
 
     @Override
     public void UpdateSimulateur(Simulateur simulateur) {
@@ -385,11 +386,6 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
     public void ValiderInstructeurSimuulateur(SeanceSimulateur seanceSimulateur)
     {
         em.merge(seanceSimulateur);
-        seanceSimulateur.getNotes().forEach((note) ->
-        {
-            note.setSeanceSimulateur(seanceSimulateur);
-        });
-
     }
 
 
@@ -420,6 +416,40 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
 
         }
         return levels;
+
+    }
+
+    @Override
+    public void AjouterLevel(Level level1, int idSeanceSimulateur, int idTache) {
+        Level level = new Level();
+        level.setLevel(level1.getLevel());
+        level.getId().setIdTache(idTache);
+
+        level.getId().setIdSeanceSimulateur(idSeanceSimulateur);
+        Tache tache = em.find(Tache.class, idTache);
+        level.setTache(tache);
+        SeanceSimulateur seanceSimulateur = em.find(SeanceSimulateur.class, idSeanceSimulateur);
+        level.setSeanceSimulateur(seanceSimulateur);
+        em.persist(level);
+        level.getTache().getLevels().add(level);
+        level.getSeanceSimulateur().getLevels().add(level);
+
+    }
+
+    @Override
+    public void AjouterNote(Note note1, int idSeanceSimulateur, int idCompetence) {
+        Note note = new Note();
+        note.setNote(note1.getNote());
+        note.getId().setIdCompetence(idCompetence);
+
+        note.getId().setIdSeanceSimulateur(idSeanceSimulateur);
+        Competence competence = em.find(Competence.class, idCompetence);
+        note.setCompetence(competence);
+        SeanceSimulateur seanceSimulateur = em.find(SeanceSimulateur.class, idSeanceSimulateur);
+        note.setSeanceSimulateur(seanceSimulateur);
+        em.persist(note);
+        note.getCompetence().getNotes().add(note);
+        note.getSeanceSimulateur().getNotes().add(note);
 
     }
 
