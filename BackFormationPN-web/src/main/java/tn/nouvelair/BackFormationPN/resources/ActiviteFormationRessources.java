@@ -280,4 +280,53 @@ public class ActiviteFormationRessources {
         return Response.ok(seanceSimulateur).build();
     }
 
+
+    @PUT
+    @Path("/simulateur/validation/trainee/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ValiderTraineeSimuulateur(@PathParam (value = "id") int id, SeanceSimulateur seanceSimulateur) {
+        metier.ValiderTraineeSimuulateur(seanceSimulateur);
+        Response.status(Status.CREATED).entity(" Modified").build();
+        return Response.ok(seanceSimulateur).build();
+    }
+
+    @PUT
+    @Path("/simulateur/reclamer/trainee/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ReclamerTraineeSimuulateur(@PathParam (value = "id") int id, SeanceSimulateur seanceSimulateur) {
+        metier.ReclamerTraineeSimuulateur(seanceSimulateur);
+        Response.status(Status.CREATED).entity(" Modified").build();
+        return Response.ok(seanceSimulateur).build();
+    }
+
+    @GET
+    @Path("/simulateur/instructor/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSimulateurInstructor(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.getSeanceSimulateurInstructor(id)).build();
+    }
+
+    @GET
+    @Path("/simulateur/trainee/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSimulateurTrainee(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.getSeanceSimulateurTrainee(id)).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/simulateur/seance/simulateur/{id}")
+    public Response GetSimulateurBySeanceSimulateur (@PathParam (value = "id") int id)
+    {
+
+        return Response.ok(metier.getSimulateurBySeanceSimulateur(id)).build() ;
+    }
+
+
 }

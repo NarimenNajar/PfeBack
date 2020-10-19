@@ -385,7 +385,35 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
     @Override
     public void ValiderInstructeurSimuulateur(SeanceSimulateur seanceSimulateur)
     {
+        if (seanceSimulateur.getResultFinal().equals("SATISFACTORY") )
+        {
+            seanceSimulateur.setValidationInstructeur(2);
+        }
+        if (seanceSimulateur.getResultFinal().equals("UNSATISFACTORY") )
+        {
+            seanceSimulateur.setValidationInstructeur(1);
+        }
         em.merge(seanceSimulateur);
+    }
+
+    @Override
+    public void ValiderTraineeSimuulateur(SeanceSimulateur seanceSimulateur)
+    {
+        seanceSimulateur.setValidationTrainee(2);
+        em.merge(seanceSimulateur);
+    }
+
+    @Override
+    public void ReclamerTraineeSimuulateur(SeanceSimulateur seanceSimulateur)
+    {
+        seanceSimulateur.setValidationTrainee(1);
+        em.merge(seanceSimulateur);
+        Reclamation reclamation = new Reclamation();
+        reclamation.setSimulateur(seanceSimulateur.getSimulateur());
+        reclamation.setDate(new java.util.Date());
+        reclamation.setObjet("Simulator Result");
+        reclamation.setContenu("I claim my result for the attached simulator session, please check my situation");
+        em.persist(reclamation);
     }
 
 
@@ -452,5 +480,46 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         note.getSeanceSimulateur().getNotes().add(note);
 
     }
+
+
+    @Override
+    public Instruction getSeanceSimulateurInstructor(int idActiviteFormation){
+        TypedQuery<Instruction> query = em.createQuery("Select p from Instruction p  "
+                        +"where p.id.idActiviteFormation=:idActiviteFormation and "
+                        +"p.position like 'Instructor' "
+                , Instruction.class);
+
+        query.setParameter("idActiviteFormation",idActiviteFormation);
+
+        Instruction instruction = null ;
+
+            instruction = query.getSingleResult();
+
+        return instruction;
+    }
+
+    @Override
+    public Instruction getSeanceSimulateurTrainee(int idActiviteFormation){
+        TypedQuery<Instruction> query = em.createQuery("Select p from Instruction p  "
+                        +"where p.id.idActiviteFormation=:idActiviteFormation and "
+                        +"p.position like 'Trainee' "
+                , Instruction.class);
+
+        query.setParameter("idActiviteFormation",idActiviteFormation);
+
+        Instruction instruction = null ;
+
+            instruction = query.getSingleResult();
+
+        return instruction;
+    }
+
+    @Override
+    public ActiviteFormation getSimulateurBySeanceSimulateur(int idSeanceSimulateur){
+        SeanceSimulateur seanceSimulateur = null;
+        seanceSimulateur = em.find(SeanceSimulateur.class, idSeanceSimulateur);
+        return seanceSimulateur.getSimulateur();
+    }
+
 
 }

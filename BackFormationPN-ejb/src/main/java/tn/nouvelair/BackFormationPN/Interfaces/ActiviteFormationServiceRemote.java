@@ -33,4 +33,9 @@ public interface ActiviteFormationServiceRemote {
     public List<Note> SelectNotesBySeanceSimulateur(Integer idSeanceSimulateur);
     public void AjouterLevel(Level level, int idSeanceSimulateur, int idTache);
     public void AjouterNote(Note note1, int idSeanceSimulateur, int idCompetence);
+    public Instruction getSeanceSimulateurInstructor(int idActiviteFormation);
+    public Instruction getSeanceSimulateurTrainee(int idActiviteFormation);
+    public ActiviteFormation getSimulateurBySeanceSimulateur(int idSeanceSimulateur);
+    public void ValiderTraineeSimuulateur(SeanceSimulateur seanceSimulateur);
+    public void ReclamerTraineeSimuulateur(SeanceSimulateur seanceSimulateur);
 }
