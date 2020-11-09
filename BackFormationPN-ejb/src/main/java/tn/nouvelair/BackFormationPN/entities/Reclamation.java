@@ -13,15 +13,16 @@ public class Reclamation implements Serializable{
     private String objet;
     private Date date;
     private String contenu;
+    private boolean etat;
     @ManyToOne
-    private Simulateur simulateur;
+    private SeanceSimulateur seanceSimulateur;
 
-    public Simulateur getSimulateur() {
-        return simulateur;
+    public SeanceSimulateur getSeanceSimulateur() {
+        return seanceSimulateur;
     }
 
-    public void setSimulateur(Simulateur simulateur) {
-        this.simulateur = simulateur;
+    public void setSeanceSimulateur(SeanceSimulateur seanceSimulateur) {
+        this.seanceSimulateur = seanceSimulateur;
     }
 
     public int getId() {
@@ -54,6 +55,14 @@ public class Reclamation implements Serializable{
 
     public void setContenu(String contenu) {
         this.contenu = contenu;
+    }
+
+    public boolean isEtat() {
+        return etat;
+    }
+
+    public void setEtat(boolean etat) {
+        this.etat = etat;
     }
 
     public Reclamation() {

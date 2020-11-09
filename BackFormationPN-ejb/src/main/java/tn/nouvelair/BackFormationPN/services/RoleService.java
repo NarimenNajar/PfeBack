@@ -67,6 +67,7 @@ public class RoleService implements RoleServiceRemote {
     @Override
     public List<Fonctionnalite> GetFonctionnalites(int idRole) {
         List<Fonctionnalite> fonctionnalites = null;
+
         try {
             fonctionnalites = em.createNativeQuery("SELECT * FROM fonctionnalite f " +
                             "LEFT JOIN role_fonctionnalite rf ON f.id = rf.fonctionnalites_id " +

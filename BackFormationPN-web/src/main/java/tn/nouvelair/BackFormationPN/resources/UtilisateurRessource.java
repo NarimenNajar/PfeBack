@@ -154,4 +154,49 @@ public class UtilisateurRessource {
         return Response.ok(metier.SelectCurrentFonctions(id)).build();
     }
 
+
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/auth")
+    public Response authenticateUser(Utilisateur u) throws Exception {
+        System.out.println("done");
+        // Authenticate the user using the credentials provided
+        if (authenticate(u) == false) {
+            System.out.println("Auth failed, Exiting with FORBIDDEN status");
+            return Response.status(Response.Status.FORBIDDEN).entity("Authentification failed !").build();
+        }
+        System.out.println("Authentification passed!");
+        //User user = userServiceLocal.findUser(u);
+        //String token = issueToken(user);
+        //System.out.println("Our token is now : "+token);
+
+        //   return Response.ok(token).header("Authorization", token).build();
+        Utilisateur us=metier.getUserByCodePN(u.getCodePN());
+        us.setConfirmation("");
+        us.setCin(0);
+        // return Response.ok(us).build();
+        return Response.ok(us).build();
+    }
+
+
+    private boolean authenticate(Utilisateur u) throws Exception {
+        if (metier.login(u) == false)
+            return false;
+        return true;
+    }
+
+
+
+    @Path("/logOut")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response logOut() {
+        //  return Response.ok(userService.logOut(idUser)).build();
+        boolean x = metier.logout();
+        if (x == true)
+            return Response.ok().build();
+        else return Response.status(Response.Status.FORBIDDEN).build();
+    }
 }

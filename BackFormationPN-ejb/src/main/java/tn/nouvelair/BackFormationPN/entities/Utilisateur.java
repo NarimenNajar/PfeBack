@@ -4,6 +4,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
+import java.security.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -36,6 +37,11 @@ public class Utilisateur implements Serializable {
     private String nationalite ;
     private int typePN;
     private String sexe;
+
+    private boolean enabled;
+    private Date lastLogin;
+    private String confirmation;
+    private String confirmationToken;
 
 
     private String numeroTel;
@@ -267,6 +273,38 @@ public class Utilisateur implements Serializable {
 
     public void setSexe(String sexe) {
         this.sexe = sexe;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public String getConfirmation() {
+        return confirmation;
+    }
+
+    public void setConfirmation(String confirmation) {
+        this.confirmation = confirmation;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
     }
 
     @Override

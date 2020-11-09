@@ -28,6 +28,8 @@ public interface UtilisateurServiceRemote {
     public List<Fonction> SelectFonctionsByUser(Integer idUtilisateur);
     public List<Fonction> SelectArchiveFonctions(Integer idUtilisateur);
     public List<Fonction> SelectCurrentFonctions(Integer idUtilisateur);
-
+    public boolean logout();
+    public boolean login(Utilisateur u) throws Exception;
+    public Utilisateur getUserByCodePN(String codePN);
 
 }

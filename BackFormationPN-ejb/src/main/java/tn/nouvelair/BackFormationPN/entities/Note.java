@@ -1,5 +1,5 @@
 package tn.nouvelair.BackFormationPN.entities;
-import sun.plugin.com.event.COMEventHandler;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.io.Serializable;
 import javax.persistence.*;

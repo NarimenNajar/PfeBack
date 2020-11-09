@@ -1,28 +1,54 @@
 package tn.nouvelair.BackFormationPN.services;
-
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import tn.nouvelair.BackFormationPN.Interfaces.UtilisateurServiceRemote;
 import tn.nouvelair.BackFormationPN.entities.Fonction;
 import tn.nouvelair.BackFormationPN.entities.Instruction;
 import tn.nouvelair.BackFormationPN.entities.Syllabus;
 import tn.nouvelair.BackFormationPN.entities.Utilisateur;
+
+import java.security.Key;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.logging.Logger;
+import javax.crypto.spec.SecretKeySpec;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
 
 @Stateless
 @LocalBean
 public class UtilisateurService implements UtilisateurServiceRemote {
+
+    public static Utilisateur userConnected = new Utilisateur();
+
+
     @PersistenceContext(unitName = "OTDAV-ejb")
     EntityManager em ;
 
+
     @Override
     public void AjouterUtilisateur(Utilisateur utilisateur) {
+        utilisateur.setConfirmation("1");
+       // utilisateur.setEnabled(true);
+        String keyString = "secretkey";
+        Key key = new SecretKeySpec(keyString.getBytes(), 0, keyString.getBytes().length, "DES");
+        System.out.println("the key is : " + key.hashCode());
+/*
+        String jwtToken = Jwts.builder()
+                .setSubject(utilisateur.getCodePN())
+                .setIssuer("Nari")
+                .setIssuedAt(new Date())
+                .setExpiration(toDate(LocalDateTime.now().plusYears(20L)))
+                .signWith(SignatureAlgorithm.HS512, key)
+                .compact();
+        utilisateur.setConfirmationToken(jwtToken);
+
+        System.out.println("the returned token is : " + jwtToken);*/
         em.persist(utilisateur);
     }
 
@@ -218,6 +244,65 @@ public class UtilisateurService implements UtilisateurServiceRemote {
 
         }
         return fonctions;
+
+    }
+    @Override
+    public boolean login(Utilisateur u) throws Exception {
+
+        //String encode = Base64.getEncoder().encodeToString(u.getPassword().getBytes());
+        //System.out.println("encode: " + encode);
+        //System.out.println("Login from service : " + u);
+        Query query = em.createQuery("SELECT u FROM Utilisateur u WHERE u.codePN = :codePN "
+                + "AND u.cin = :cin");
+        query.setParameter("codePN", u.getCodePN());
+        query.setParameter("cin", u.getCin());
+        // query.setParameter("password", decode);
+        int resultCount = query.getResultList().size();
+        System.out.println("Found " + resultCount + " Result(s) ");
+        if (resultCount != 1) {
+            return false;
+        } else {
+            Utilisateur user = (Utilisateur) query.getResultList().get(0);
+            user.setEnabled(true);
+            user.setLastLogin(new java.util.Date());
+            em.flush();
+            userConnected = user;
+
+
+            System.out.println(userConnected.getRole());
+            return true;
+        }
+
+    }
+
+    @Override
+    public boolean logout() {
+        if (userConnected.isEnabled()) {
+            Utilisateur user = em.find(Utilisateur.class, userConnected.getId());
+            user.setEnabled(false);
+            em.flush();
+            userConnected = new Utilisateur();
+            System.out.println("logged out");
+            return true;
+        } else
+            return false;
+    }
+
+    @Override
+    public Utilisateur getUserByCodePN(String codePN) {
+        try {
+            Utilisateur user = (Utilisateur) em.createQuery("SELECT user FROM Utilisateur user WHERE user.codePN = :codePN")
+                    .setParameter("codePN", codePN)
+                    .getSingleResult();
+            return user;
+
+        } catch (javax.persistence.NoResultException exp) {
+            return null;
+        }
+    }
+
+    private Date toDate(LocalDateTime localDateTime) {
+        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
     }
 }

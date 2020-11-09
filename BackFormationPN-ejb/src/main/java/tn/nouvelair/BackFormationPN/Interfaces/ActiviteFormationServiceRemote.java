@@ -38,4 +38,8 @@ public interface ActiviteFormationServiceRemote {
     public ActiviteFormation getSimulateurBySeanceSimulateur(int idSeanceSimulateur);
     public void ValiderTraineeSimuulateur(SeanceSimulateur seanceSimulateur);
     public void ReclamerTraineeSimuulateur(SeanceSimulateur seanceSimulateur);
+    public List<Reclamation> GetReclamationsNonTraitee();
+    public List<Reclamation> GetReclamationsTraitee();
+    public List<Reclamation> GetReclamations();
+    public void TraiterReclamation(Reclamation reclamation);
 }

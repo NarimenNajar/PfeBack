@@ -329,4 +329,36 @@ public class ActiviteFormationRessources {
     }
 
 
+    @GET
+    @Path("/reclamation/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getReclamations(){
+
+        return Response.ok(metier.GetReclamations()).build();
+    }
+
+    @GET
+    @Path("/reclamation/traitee")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getReclamationsTraitee(){
+
+        return Response.ok(metier.GetReclamationsTraitee()).build();
+    }
+
+    @GET
+    @Path("/reclamation/nonTraitee")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getReclamationsNonTraitee(){
+
+        return Response.ok(metier.GetReclamationsNonTraitee()).build();
+    }
+    @PUT
+    @Path("/reclamation/traiter/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response TraiterReclamation(@PathParam (value = "id") int id, Reclamation reclamation) {
+        metier.TraiterReclamation(reclamation);
+        Response.status(Status.CREATED).entity(" Modified").build();
+        return Response.ok(reclamation).build();
+    }
 }

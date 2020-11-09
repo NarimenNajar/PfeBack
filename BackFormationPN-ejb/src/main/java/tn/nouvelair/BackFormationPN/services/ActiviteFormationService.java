@@ -409,7 +409,8 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         seanceSimulateur.setValidationTrainee(1);
         em.merge(seanceSimulateur);
         Reclamation reclamation = new Reclamation();
-        reclamation.setSimulateur(seanceSimulateur.getSimulateur());
+        reclamation.setEtat(false);
+        reclamation.setSeanceSimulateur(seanceSimulateur);
         reclamation.setDate(new java.util.Date());
         reclamation.setObjet("Simulator Result");
         reclamation.setContenu("I claim my result for the attached simulator session, please check my situation");
@@ -521,5 +522,51 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         return seanceSimulateur.getSimulateur();
     }
 
+    @Override
+    public List<Reclamation> GetReclamationsNonTraitee() {
+        List<Reclamation> reclamations=null;
+        TypedQuery<Reclamation> query = em.createQuery("Select e from Reclamation e "
+                        +"where e.etat = false "
+                , Reclamation.class);
+        try {
+            reclamations = query.getResultList();
+        } catch (NoResultException e ) {
 
+        }
+        return reclamations;
+    }
+
+    @Override
+    public List<Reclamation> GetReclamationsTraitee() {
+        List<Reclamation> reclamations=null;
+        TypedQuery<Reclamation> query = em.createQuery("Select e from Reclamation e "
+                        +"where e.etat = true "
+                , Reclamation.class);
+        try {
+            reclamations = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return reclamations;
+    }
+
+    @Override
+    public List<Reclamation> GetReclamations() {
+        List<Reclamation> reclamations=null;
+        TypedQuery<Reclamation> query = em.createQuery("Select e from Reclamation e "
+                , Reclamation.class);
+        try {
+            reclamations = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return reclamations;
+    }
+
+    @Override
+    public void TraiterReclamation(Reclamation reclamation)
+    {
+        reclamation.setEtat(true);
+        em.merge(reclamation);
+    }
 }

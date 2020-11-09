@@ -10,6 +10,9 @@
 	<packaging>ejb</packaging>
 
 
+	<properties>
+		<version.jsonwebtoken>0.6.0</version.jsonwebtoken>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -32,7 +35,28 @@
 			<version>4.0.0.Beta5</version>
 			<scope>provided</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.security.enterprise</groupId>
+			<artifactId>javax.security.enterprise-api</artifactId>
+			<version>1.0</version>
+		</dependency>
     </dependencies>
 
 	<build>
