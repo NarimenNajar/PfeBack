@@ -3,14 +3,12 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import tn.nouvelair.BackFormationPN.Interfaces.UtilisateurServiceRemote;
-import tn.nouvelair.BackFormationPN.entities.Fonction;
-import tn.nouvelair.BackFormationPN.entities.Instruction;
-import tn.nouvelair.BackFormationPN.entities.Syllabus;
-import tn.nouvelair.BackFormationPN.entities.Utilisateur;
+import tn.nouvelair.BackFormationPN.entities.*;
 
 import java.security.Key;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Logger;
 import javax.crypto.spec.SecretKeySpec;
@@ -187,7 +185,37 @@ public class UtilisateurService implements UtilisateurServiceRemote {
     public List<Instruction> SelectArchiveInstructions(Integer idUtilisateur) {
 
         List<Instruction> instructions=null;
-        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.utilisateur="+idUtilisateur +"and e.activiteFormation.dateFinActivite < current_date "
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.utilisateur="+idUtilisateur  +"and e.activiteFormation.dateFinActivite < current_date "
+                , Instruction.class);
+
+        try {
+            instructions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return instructions;
+
+    }
+    @Override
+    public List<Instruction> SelectTodayInstructions(Integer idUtilisateur) {
+
+        List<Instruction> instructions=null;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.utilisateur="+idUtilisateur +"and e.activiteFormation.dateFinActivite = current_date "
+                , Instruction.class);
+
+        try {
+            instructions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return instructions;
+
+    }
+    @Override
+    public List<Instruction> SelectTodayInstructionsTrainee(Integer idUtilisateur) {
+
+        List<Instruction> instructions=null;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.utilisateur="+idUtilisateur +"and e.position like 'Trainee'" +"and e.activiteFormation.dateFinActivite = current_date "
                 , Instruction.class);
 
         try {
@@ -199,6 +227,107 @@ public class UtilisateurService implements UtilisateurServiceRemote {
 
     }
 
+    @Override
+    public List<Instruction> SelectTodayInstructionsInstructor(Integer idUtilisateur) {
+
+        List<Instruction> instructions=null;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.utilisateur="+idUtilisateur +"and e.position like 'Instructor'" +"and e.activiteFormation.dateFinActivite = current_date "
+                , Instruction.class);
+
+        try {
+            instructions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return instructions;
+
+    }
+
+
+    @Override
+    public List<Instruction> SelectAlerteMyInstructionsEcheance(Integer idUtilisateur) {
+        Date d = new java.util.Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DATE, 3);
+        Date dateNowPlusThreeDays = c.getTime();
+
+        List<Instruction> instructions=null;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.utilisateur="+idUtilisateur +"and e.dateEch <= :dateNowPlusThreeDays"
+                , Instruction.class);
+        query.setParameter("dateNowPlusThreeDays", dateNowPlusThreeDays);
+
+        try {
+            instructions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return instructions;
+
+    }
+    @Override
+    public List<Instruction> SelectAlerteAllInstructionsEcheance() {
+        Date d = new java.util.Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DATE, 3);
+        Date dateNowPlusThreeDays = c.getTime();
+
+        List<Instruction> instructions=null;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.dateEch <= :dateNowPlusThreeDays"
+                , Instruction.class);
+        query.setParameter("dateNowPlusThreeDays", dateNowPlusThreeDays);
+
+        try {
+            instructions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return instructions;
+
+    }
+    @Override
+    public List<Instruction> SelectAlerteMyInstructionsFinTolerEcheance(Integer idUtilisateur) {
+        Date d = new java.util.Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DATE, 3);
+        Date dateNowPlusThreeDays = c.getTime();
+
+        List<Instruction> instructions=null;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.utilisateur="+idUtilisateur +"and e.dateFinToler <= :dateNowPlusThreeDays"
+                , Instruction.class);
+        query.setParameter("dateNowPlusThreeDays", dateNowPlusThreeDays);
+
+        try {
+            instructions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return instructions;
+
+    }
+    @Override
+    public List<Instruction> SelectAlerteAllInstructionsFinTolerEcheance() {
+        Date d = new java.util.Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DATE, 3);
+        Date dateNowPlusThreeDays = c.getTime();
+
+        List<Instruction> instructions=null;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.dateFinToler <= :dateNowPlusThreeDays"
+                , Instruction.class);
+        query.setParameter("dateNowPlusThreeDays", dateNowPlusThreeDays);
+
+        try {
+            instructions = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return instructions;
+
+    }
 
     @Override
     public List<Fonction> SelectFonctionsByUser(Integer idUtilisateur) {
@@ -305,4 +434,6 @@ public class UtilisateurService implements UtilisateurServiceRemote {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 
     }
+
+
 }

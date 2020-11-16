@@ -48,7 +48,7 @@ public class Utilisateur implements Serializable {
 
     private String email;
 
-    @OneToMany(cascade=CascadeType.DETACH,fetch=FetchType.EAGER,mappedBy = "utilisateur")
+    @OneToMany(cascade=CascadeType.REMOVE,fetch=FetchType.EAGER,mappedBy = "utilisateur")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<Fonction> fonctions;

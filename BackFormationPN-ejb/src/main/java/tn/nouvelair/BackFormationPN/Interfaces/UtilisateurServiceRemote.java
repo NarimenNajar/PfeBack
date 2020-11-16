@@ -31,5 +31,12 @@ public interface UtilisateurServiceRemote {
     public boolean logout();
     public boolean login(Utilisateur u) throws Exception;
     public Utilisateur getUserByCodePN(String codePN);
+    public List<Instruction> SelectAlerteMyInstructionsEcheance(Integer idUtilisateur);
+    public List<Instruction> SelectAlerteAllInstructionsEcheance();
+    public List<Instruction> SelectAlerteAllInstructionsFinTolerEcheance();
+    public List<Instruction> SelectAlerteMyInstructionsFinTolerEcheance(Integer idUtilisateur);
+    public List<Instruction> SelectTodayInstructions(Integer idUtilisateur);
+    public List<Instruction> SelectTodayInstructionsInstructor(Integer idUtilisateur);
+    public List<Instruction> SelectTodayInstructionsTrainee(Integer idUtilisateur);
 
 }

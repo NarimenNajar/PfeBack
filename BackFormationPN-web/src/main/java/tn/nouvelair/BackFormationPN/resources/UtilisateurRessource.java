@@ -108,6 +108,34 @@ public class UtilisateurRessource {
         return Response.ok(metier.SelectArchiveInstructions(id)).build();
     }
 
+    @GET
+    @Path("/instructions/today/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTodayInstructionByUser(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectTodayInstructions(id)).build();
+    }
+
+
+    @GET
+    @Path("/instructions/today/instructor/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTodayInstructionByInstructor(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectTodayInstructionsInstructor(id)).build();
+    }
+
+    @GET
+    @Path("/instructions/today/trainee/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTodayInstructionByTrainee(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectTodayInstructionsTrainee(id)).build();
+    }
+
 
     @GET
     @Path("/instructions/instructor/{id}")
@@ -126,6 +154,42 @@ public class UtilisateurRessource {
     public Response getInstructionsByTrainee(@PathParam (value = "id") int id){
 
         return Response.ok(metier.SelectInstructionsByTrainee(id)).build();
+    }
+
+    @GET
+    @Path("/instructions/alerteEcheance/all")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response SelectAlerteAllInstructionsEcheance(){
+
+        return Response.ok(metier.SelectAlerteAllInstructionsEcheance()).build();
+    }
+
+    @GET
+    @Path("/instructions/alerteEcheance/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response SelectAlerteMyInstructionsEcheance(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectAlerteMyInstructionsEcheance(id)).build();
+    }
+
+    @GET
+    @Path("/instructions/alerteFinTolerEcheance/all")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response SelectAlerteAllInstructionsFinTolerEcheance(){
+
+        return Response.ok(metier.SelectAlerteAllInstructionsFinTolerEcheance()).build();
+    }
+
+    @GET
+    @Path("/instructions/alerteFinTolerEcheance/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response SelectAlerteMyInstructionsFinTolerEcheance(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectAlerteMyInstructionsEcheance(id)).build();
     }
 
     @GET

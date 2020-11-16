@@ -25,8 +25,7 @@ public class Instruction implements Serializable{
     @JoinColumn(name ="idUtilisateur",referencedColumnName ="id",insertable = true,updatable = true)
     private Utilisateur utilisateur;
 
-
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
     @MapsId("idActiviteFormation")
     @JoinColumn(name = "idActiviteFormation",referencedColumnName = "id",insertable = true,updatable = true)
     private ActiviteFormation activiteFormation;
@@ -105,4 +104,5 @@ public class Instruction implements Serializable{
     public void setEcheance(boolean echeance) {
         this.echeance = echeance;
     }
+
 }

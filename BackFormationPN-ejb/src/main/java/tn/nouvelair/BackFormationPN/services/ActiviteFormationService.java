@@ -10,6 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -19,6 +23,7 @@ import java.util.logging.Logger;
 public class ActiviteFormationService  implements ActiviteFormationServiceRemote {
     @PersistenceContext(unitName = "OTDAV-ejb")
     EntityManager em ;
+    private static final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     /////// simulateur
 
@@ -29,6 +34,40 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         simulateur.setNombreJours(size);
         simulateur.setTypeActivite(n);
         em.persist(simulateur);
+        // calcule echeance
+        System.out.println("Calcule Ech");
+
+        int s = simulateur.getTypeFormation().getParametrageEcheance().getEtapeSuivante();
+        System.out.println("Etape suivante :");
+        System.out.println(s);
+        int t = simulateur.getTypeFormation().getParametrageEcheance().getToleranceJours();
+        System.out.println("ToleranceJours :");
+        System.out.println(t);
+
+
+        Date d = simulateur.getDateFinActivite();
+        System.out.println("date seance max");
+        System.out.println(d);
+        System.out.println(dateFormat.format(d));
+
+        //convert date to calendar
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DATE, s);
+        Date dateEch = c.getTime();
+        System.out.println("date ech");
+        System.out.println(dateFormat.format(dateEch));
+
+        c.add(Calendar.DATE, 1);
+        Date dateDebutToler = c.getTime();
+        System.out.println("date debut toler");
+        System.out.println(dateFormat.format(dateDebutToler));
+
+        c.add(Calendar.DATE, t);
+        Date dateFinToler = c.getTime();
+        System.out.println("date fin toler");
+        System.out.println(dateFormat.format(dateFinToler));
+
         simulateur.getSeanceSimulateurs().forEach((seanceSimulateur) ->
         {   seanceSimulateur.setSimulateur(simulateur);
             em.persist(seanceSimulateur);
@@ -71,6 +110,16 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
             System.out.println(instruction.getUtilisateur().getId());
             System.out.println(instruction.getActiviteFormation().getId());
             System.out.println(instruction.getPosition());
+            if (instruction.getPosition().equals("Trainee"))
+            {
+                System.out.println("set echeance");
+
+                instruction.setDateEch(dateEch);
+                instruction.setDateDebutToler(dateDebutToler);
+                instruction.setDateFinToler(dateFinToler);
+                System.out.println("set echeance Done !");
+
+            }
             System.out.println("avant perst");
 
             em.persist(instruction);
@@ -136,12 +185,54 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
     @Override
     public void AjouterFormation(Formation formation) {
         int size = formation.getSeanceFormations().size();
+
         formation.setNombreJours(size);
         em.persist(formation);
+
+        // calcule echeance
+        System.out.println("Calcule Ech");
+
+        int s = formation.getTypeFormation().getParametrageEcheance().getEtapeSuivante();
+        System.out.println("Etape suivante :");
+        System.out.println(s);
+        int t = formation.getTypeFormation().getParametrageEcheance().getToleranceJours();
+        System.out.println("ToleranceJours :");
+        System.out.println(t);
+
+
+        Date d = formation.getDateFinActivite();
+        System.out.println("date seance max");
+        System.out.println(d);
+        System.out.println(dateFormat.format(d));
+
+        //convert date to calendar
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DATE, s);
+        Date dateEch = c.getTime();
+        System.out.println("date ech");
+        System.out.println(dateFormat.format(dateEch));
+
+        c.add(Calendar.DATE, 1);
+        Date dateDebutToler = c.getTime();
+        System.out.println("date debut toler");
+        System.out.println(dateFormat.format(dateDebutToler));
+
+        c.add(Calendar.DATE, t);
+        Date dateFinToler = c.getTime();
+        System.out.println("date fin toler");
+        System.out.println(dateFormat.format(dateFinToler));
+
+        System.out.println("ajout seances");
+
+
         formation.getSeanceFormations().forEach((seanceFormation) ->
         {   seanceFormation.setFormation(formation);
             em.persist(seanceFormation);
         });
+
+
+
         System.out.println("formation ");
         formation.getInstructions().forEach((instruction) ->
         {  // instruction.getId().setIdActiviteFormation(formation.getId());
@@ -157,7 +248,39 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
             System.out.println(instruction.getPosition());
             System.out.println("avant perst");
 
+            /*if (instruction.getPosition().equals("Trainee"))
+            {
+                System.out.println("set echeance");
+
+                instruction.setDateEch(dateEch);
+                instruction.setDateDebutToler(dateDebutToler);
+                instruction.setDateFinToler(dateFinToler);
+                System.out.println("set echeance Done !");
+
+            }
+
+            if (instruction.getPosition() == "Trainee")
+            {
+                System.out.println("set echeance");
+
+                instruction.setDateEch(dateEch);
+                instruction.setDateDebutToler(dateDebutToler);
+                instruction.setDateFinToler(dateFinToler);
+                System.out.println("set echeance Done !");
+
+            }*/
+            if (instruction.isEcheance())
+            {
+                System.out.println("set echeance");
+
+                instruction.setDateEch(dateEch);
+                instruction.setDateDebutToler(dateDebutToler);
+                instruction.setDateFinToler(dateFinToler);
+                System.out.println("set echeance Done !");
+
+            }
             em.persist(instruction);
+
             System.out.println("aaaaa");
            // Utilisateur user = em.find(Utilisateur.class,instruction.getUtilisateur().getId());
           //  Utilisateur user=instruction.getUtilisateur();
@@ -186,6 +309,42 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         System.out.println(formation.getTypeActivite());
 
         em.persist(formation);
+        // calcule echeance
+        System.out.println("Calcule Ech");
+
+        int s = formation.getTypeFormation().getParametrageEcheance().getEtapeSuivante();
+        System.out.println("Etape suivante :");
+        System.out.println(s);
+        int t = formation.getTypeFormation().getParametrageEcheance().getToleranceJours();
+        System.out.println("ToleranceJours :");
+        System.out.println(t);
+
+
+        Date d = formation.getDateFinActivite();
+        System.out.println("date seance max");
+        System.out.println(d);
+        System.out.println(dateFormat.format(d));
+
+        //convert date to calendar
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DATE, s);
+        Date dateEch = c.getTime();
+        System.out.println("date ech");
+        System.out.println(dateFormat.format(dateEch));
+
+        c.add(Calendar.DATE, 1);
+        Date dateDebutToler = c.getTime();
+        System.out.println("date debut toler");
+        System.out.println(dateFormat.format(dateDebutToler));
+
+        c.add(Calendar.DATE, t);
+        Date dateFinToler = c.getTime();
+        System.out.println("date fin toler");
+        System.out.println(dateFormat.format(dateFinToler));
+
+        System.out.println("ajout seances");
+
         formation.getSeanceFormations().forEach((seanceFormation) ->
         {   seanceFormation.setFormation(formation);
             em.persist(seanceFormation);
@@ -202,6 +361,17 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
             System.out.println(instruction.getUtilisateur().getId());
             System.out.println(instruction.getActiviteFormation().getId());
             System.out.println(instruction.getPosition());
+            System.out.println("avant perst");
+            if (instruction.getPosition().equals("Trainee"))
+            {
+                System.out.println("set echeance");
+
+                instruction.setDateEch(dateEch);
+                instruction.setDateDebutToler(dateDebutToler);
+                instruction.setDateFinToler(dateFinToler);
+                System.out.println("set echeance Done !");
+
+            }
             System.out.println("avant perst");
 
             em.persist(instruction);
@@ -223,6 +393,42 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         formation.setTypeActivite(n);
         System.out.println(formation.getTypeActivite());
         em.persist(formation);
+        // calcule echeance
+        System.out.println("Calcule Ech");
+
+        int s = formation.getTypeFormation().getParametrageEcheance().getEtapeSuivante();
+        System.out.println("Etape suivante :");
+        System.out.println(s);
+        int t = formation.getTypeFormation().getParametrageEcheance().getToleranceJours();
+        System.out.println("ToleranceJours :");
+        System.out.println(t);
+
+
+        Date d = formation.getDateFinActivite();
+        System.out.println("date seance max");
+        System.out.println(d);
+        System.out.println(dateFormat.format(d));
+
+        //convert date to calendar
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DATE, s);
+        Date dateEch = c.getTime();
+        System.out.println("date ech");
+        System.out.println(dateFormat.format(dateEch));
+
+        c.add(Calendar.DATE, 1);
+        Date dateDebutToler = c.getTime();
+        System.out.println("date debut toler");
+        System.out.println(dateFormat.format(dateDebutToler));
+
+        c.add(Calendar.DATE, t);
+        Date dateFinToler = c.getTime();
+        System.out.println("date fin toler");
+        System.out.println(dateFormat.format(dateFinToler));
+
+        System.out.println("ajout seances");
+
         formation.getSeanceFormations().forEach((seanceFormation) ->
         {   seanceFormation.setFormation(formation);
             em.persist(seanceFormation);
@@ -239,6 +445,16 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
             System.out.println(instruction.getUtilisateur().getId());
             System.out.println(instruction.getActiviteFormation().getId());
             System.out.println(instruction.getPosition());
+            if (instruction.getPosition().equals("Trainee"))
+            {
+                System.out.println("set echeance");
+
+                instruction.setDateEch(dateEch);
+                instruction.setDateDebutToler(dateDebutToler);
+                instruction.setDateFinToler(dateFinToler);
+                System.out.println("set echeance Done !");
+
+            }
             System.out.println("avant perst");
 
             em.persist(instruction);
@@ -309,7 +525,27 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
 
     @Override
     public void deleteFormation(int idFormation) {
+        System.out.println("instruction list");
+        List<Instruction> instructions=null;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.activiteFormation="+idFormation
+                , Instruction.class);
+             instructions = query.getResultList();
+            System.out.println(instructions.size());
+            instructions.forEach((instruction) ->
+            {
+                System.out.println("instruction id");
+                System.out.println(instruction.getId());
+                System.out.println("instruction formation id");
+                System.out.println(instruction.getActiviteFormation().getId());
+                System.out.println("instruction user id");
+                System.out.println(instruction.getUtilisateur().getId());
+                em.remove(instruction);
+                System.out.println("instruction removed");
+            });
+        System.out.println(idFormation);
         em.remove(em.find(Formation.class, idFormation));
+        System.out.println("Formation removed");
+
     }
 
     @Override
@@ -374,6 +610,49 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
         instruction.setUtilisateur(user);
         ActiviteFormation activiteFormation = em.find(ActiviteFormation.class, idActiviteFormation);
         instruction.setActiviteFormation(activiteFormation);
+        // calcule echeance
+        System.out.println("Calcule Ech");
+
+        int s = activiteFormation.getTypeFormation().getParametrageEcheance().getEtapeSuivante();
+        System.out.println("Etape suivante :");
+        System.out.println(s);
+        int t = activiteFormation.getTypeFormation().getParametrageEcheance().getToleranceJours();
+        System.out.println("ToleranceJours :");
+        System.out.println(t);
+
+
+        Date d = activiteFormation.getDateFinActivite();
+        System.out.println("date seance max");
+        System.out.println(d);
+        System.out.println(dateFormat.format(d));
+
+        //convert date to calendar
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+        c.add(Calendar.DATE, s);
+        Date dateEch = c.getTime();
+        System.out.println("date ech");
+        System.out.println(dateFormat.format(dateEch));
+
+        c.add(Calendar.DATE, 1);
+        Date dateDebutToler = c.getTime();
+        System.out.println("date debut toler");
+        System.out.println(dateFormat.format(dateDebutToler));
+
+        c.add(Calendar.DATE, t);
+        Date dateFinToler = c.getTime();
+        System.out.println("date fin toler");
+        System.out.println(dateFormat.format(dateFinToler));
+        if (instruction.getPosition().equals("Trainee"))
+        {
+            System.out.println("set echeance");
+
+            instruction.setDateEch(dateEch);
+            instruction.setDateDebutToler(dateDebutToler);
+            instruction.setDateFinToler(dateFinToler);
+            System.out.println("set echeance Done !");
+
+        }
         em.persist(instruction);
         instruction.getUtilisateur().getInstructions().add(instruction);
         instruction.getActiviteFormation().getInstructions().add(instruction);
@@ -568,5 +847,41 @@ public class ActiviteFormationService  implements ActiviteFormationServiceRemote
     {
         reclamation.setEtat(true);
         em.merge(reclamation);
+    }
+    @Override
+    public List<SeanceSimulateur> GetSeanceSimulateurs() {
+        List<SeanceSimulateur> seanceSimulateurs=null;
+        TypedQuery<SeanceSimulateur> query = em.createQuery("Select e from SeanceSimulateur e "
+                , SeanceSimulateur.class);
+        try {
+            seanceSimulateurs = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return seanceSimulateurs;
+    }
+    @Override
+    public List<Note> GetNotes() {
+        List<Note> notes=null;
+        TypedQuery<Note> query = em.createQuery("Select e from Note e "
+                , Note.class);
+        try {
+            notes = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return notes;
+    }
+    @Override
+    public List<Level> GetLevels() {
+        List<Level> levels=null;
+        TypedQuery<Level> query = em.createQuery("Select e from Level e "
+                , Level.class);
+        try {
+            levels = query.getResultList();
+        } catch (NoResultException e ) {
+
+        }
+        return levels;
     }
 }

@@ -361,4 +361,29 @@ public class ActiviteFormationRessources {
         Response.status(Status.CREATED).entity(" Modified").build();
         return Response.ok(reclamation).build();
     }
+
+    @GET
+    @Path("/simulateur/seanceSimulateur/all")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSeanceSimulateurs(){
+
+        return Response.ok(metier.GetSeanceSimulateurs()).build();
+    }
+
+    @GET
+    @Path("/simulateur/all/notes")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getNotes(){
+
+        return Response.ok(metier.GetNotes()).build();
+    }
+
+    @GET
+    @Path("/simulateur/all/levels")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getLevels(){
+
+        return Response.ok(metier.GetLevels()).build();
+    }
+
 }

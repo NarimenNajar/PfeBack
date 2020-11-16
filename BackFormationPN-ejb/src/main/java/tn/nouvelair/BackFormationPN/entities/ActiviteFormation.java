@@ -60,7 +60,7 @@ public class ActiviteFormation implements Serializable {
     }
 */
 
-    @OneToMany(mappedBy = "activiteFormation")
+    @OneToMany(cascade=CascadeType.REMOVE,mappedBy = "activiteFormation")
     private List<Instruction> instructions;
 
     public List<Instruction> getInstructions() {

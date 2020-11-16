@@ -42,4 +42,7 @@ public interface ActiviteFormationServiceRemote {
     public List<Reclamation> GetReclamationsTraitee();
     public List<Reclamation> GetReclamations();
     public void TraiterReclamation(Reclamation reclamation);
+    public List<SeanceSimulateur> GetSeanceSimulateurs();
+    public List<Note> GetNotes();
+    public List<Level> GetLevels();
 }

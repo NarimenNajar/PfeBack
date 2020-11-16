@@ -19,7 +19,7 @@ public class Formation extends ActiviteFormation implements Serializable {
 
     private String titreFormation;
 
-    @OneToMany(fetch=FetchType.EAGER,mappedBy = "formation")
+    @OneToMany(cascade=CascadeType.REMOVE,fetch=FetchType.EAGER,mappedBy = "formation")
     @Fetch(value = FetchMode.SUBSELECT)
 
     private List<SeanceFormation> seanceFormations;
