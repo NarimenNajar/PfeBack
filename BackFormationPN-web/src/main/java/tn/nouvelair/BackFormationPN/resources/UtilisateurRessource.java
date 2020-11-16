@@ -109,7 +109,7 @@ public class UtilisateurRessource {
     }
 
     @GET
-    @Path("/instructions/today/{id}")
+    @Path("/instructions/today/all/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTodayInstructionByUser(@PathParam (value = "id") int id){
