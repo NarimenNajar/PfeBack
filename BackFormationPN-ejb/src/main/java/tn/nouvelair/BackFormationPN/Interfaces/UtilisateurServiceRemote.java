@@ -38,5 +38,6 @@ public interface UtilisateurServiceRemote {
     public List<Instruction> SelectTodayInstructions(Integer idUtilisateur);
     public List<Instruction> SelectTodayInstructionsInstructor(Integer idUtilisateur);
     public List<Instruction> SelectTodayInstructionsTrainee(Integer idUtilisateur);
-
+    public Instruction SelectInstructionsByActiviteAsInstructor(Integer idActivite);
+    public Instruction SelectInstructionsByActiviteAsTrainee(Integer idActivite);
 }

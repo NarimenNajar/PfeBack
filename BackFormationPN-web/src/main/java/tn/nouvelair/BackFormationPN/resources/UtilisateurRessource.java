@@ -193,6 +193,22 @@ public class UtilisateurRessource {
     }
 
     @GET
+    @Path("/instructions/Bysimulateur/AsTrainee/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTodayInstructionBysimulateurAsTrainee(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectInstructionsByActiviteAsTrainee(id)).build();
+    }
+    @GET
+    @Path("/instructions/Bysimulateur/AsInstructor/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getTodayInstructionBysimulateurAsInstructor(@PathParam (value = "id") int id){
+
+        return Response.ok(metier.SelectInstructionsByActiviteAsInstructor(id)).build();
+    }
+    @GET
     @Path("/fonctions/all/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

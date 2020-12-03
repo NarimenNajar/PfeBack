@@ -148,7 +148,39 @@ public class UtilisateurService implements UtilisateurServiceRemote {
         return instructions;
 
     }
+    @Override
+    public Instruction SelectInstructionsByActiviteAsTrainee(Integer idActivite) {
 
+        List<Instruction> instructions=null;
+        Instruction instruction = null ;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.activiteFormation="+idActivite +"and e.position like 'Trainee'"
+                , Instruction.class);
+
+
+        try {
+            instruction = query.getSingleResult();
+        } catch (NoResultException e ) {
+
+        }
+        return instruction;
+    }
+
+    @Override
+    public Instruction SelectInstructionsByActiviteAsInstructor(Integer idActivite) {
+
+        List<Instruction> instructions=null;
+        Instruction instruction = null ;
+        TypedQuery<Instruction> query = em.createQuery("Select e from Instruction e where e.activiteFormation="+idActivite +"and e.position like 'Instructor'"
+                , Instruction.class);
+
+
+        try {
+            instruction = query.getSingleResult();
+        } catch (NoResultException e ) {
+
+        }
+        return instruction;
+    }
     @Override
     public List<Instruction> SelectInstructionsByInstructor(Integer idUtilisateur) {
 
@@ -209,7 +241,6 @@ public class UtilisateurService implements UtilisateurServiceRemote {
 
         }
         return instructions;
-
     }
     @Override
     public List<Instruction> SelectTodayInstructionsTrainee(Integer idUtilisateur) {
