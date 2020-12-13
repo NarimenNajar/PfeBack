@@ -45,7 +45,7 @@ public class PopulationRessource {
     }
 
     @PUT
-    @Path("update/{id}")
+    @Path("/update/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdatePopulation(@PathParam (value = "id") int id,Population population) {

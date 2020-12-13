@@ -48,7 +48,7 @@ public class TypeFormationRessource {
 
 
     @PUT
-    @Path("update/{id}")
+    @Path("/update/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdateTypeFormation(@PathParam (value = "id") int id,TypeFormation typeFormation) {

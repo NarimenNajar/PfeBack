@@ -44,7 +44,7 @@ public class SystemeExterneRessource {
         return Response.status(Status.OK).build() ;    }
 
     @PUT
-    @Path("update/{id}")
+    @Path("/update/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdateExterne(@PathParam (value = "id") int id, SystemeExterne systemeExterne) {

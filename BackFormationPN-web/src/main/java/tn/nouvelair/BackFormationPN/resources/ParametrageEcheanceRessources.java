@@ -50,7 +50,7 @@ public class ParametrageEcheanceRessources {
 
 
     @PUT
-    @Path("update/{id}")
+    @Path("/update/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdateParametrageEcheance(@PathParam (value = "id") int id,ParametrageEcheance parametrageEcheance) {

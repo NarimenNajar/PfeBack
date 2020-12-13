@@ -48,7 +48,7 @@ public class RoleRessource {
 
 
     @PUT
-    @Path("update/{id}")
+    @Path("/update/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdateRole(@PathParam (value = "id") int id,Role role) {

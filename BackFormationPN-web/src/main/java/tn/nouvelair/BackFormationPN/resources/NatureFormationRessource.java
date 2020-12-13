@@ -49,7 +49,7 @@ public class NatureFormationRessource {
 
 
     @PUT
-    @Path("update/{id}")
+    @Path("/update/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response UpdateNatureFormation(@PathParam (value = "id") int id,NatureFormation natureFormation) {

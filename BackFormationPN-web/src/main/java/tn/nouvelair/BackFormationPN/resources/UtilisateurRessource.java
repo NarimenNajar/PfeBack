@@ -1,19 +1,13 @@
 package tn.nouvelair.BackFormationPN.resources;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import tn.nouvelair.BackFormationPN.Interfaces.UtilisateurServiceRemote;
+import tn.nouvelair.BackFormationPN.entities.TypeFormation;
 import tn.nouvelair.BackFormationPN.entities.Utilisateur;
 
 
@@ -79,6 +73,16 @@ public class UtilisateurRessource {
         metier.AjouterUtilisateur(utilisateur);
 
         return Response.status(Response.Status.CREATED).entity(utilisateur).build();
+    }
+
+    @PUT
+    @Path("/update/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response UpdateUtilisateur(@PathParam (value = "id") int id, Utilisateur utilisateur) {
+        metier.updateUtilisateur(utilisateur);
+        Response.status(Status.CREATED).entity(" Modified").build();
+        return Response.ok(utilisateur).build();
     }
 
     @GET
